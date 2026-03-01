@@ -25,15 +25,16 @@ export const Header = () => {
         "Giới thiệu",
         "Kỹ năng",
         "Sản phẩm",
+        "Chứng Chỉ ",
         "Liên hệ",
     ];
     return (
         <>
-            <div className="bg-[var(--bg-color)] ">
+            <div className="bg-[var(--bg-color)] fixed w-full z-30">
                 <div className=" flex justify-between items-center  md:px-20 py-5  ">
                     {/* name */}
                     <div className="text-3xl uppercase font-medium  text-white tracking-widest header">
-                        vương
+                        hùng vương
                     </div>
                     {/* menu */}
                     <nav className="flex gap-x-5 sub-header">
@@ -50,10 +51,6 @@ export const Header = () => {
 
                     {/* darkmode */}
                 </div>
-
-            
-
-            
             </div>
         </>
     );
