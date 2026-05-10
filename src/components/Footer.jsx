@@ -4,7 +4,7 @@ import { MyIcon } from '../contants/icon'
 const Footer = () => {
   return (
     <div>   {/* FOOTER */}
-      <footer className="border-t border-gray-800 px-6 md:px-16 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-gray-500">
+      <footer className="border-t border-gray-800 bg-[#0D0E0F] px-6 md:px-16 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-gray-500">
         <div>
           <div className="text-xl font-bold text-white mb-2">Portfolio</div>
           <p className="text-[10px] uppercase tracking-widest">© 2026 Portfolio. Tất cả quyền được bảo lưu.</p>

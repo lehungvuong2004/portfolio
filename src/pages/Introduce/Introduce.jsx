@@ -79,7 +79,6 @@ const Hero = () => (
     </div>
   </section>
 );
-
 const Values = () => (
   <section className="max-w-7xl mx-auto px-6 md:px-16">
     <div className="bg-[#111214] rounded-[3rem] p-16 border border-white/5 shadow-inner">

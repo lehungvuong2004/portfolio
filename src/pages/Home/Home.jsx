@@ -1,11 +1,12 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 import { MyIcon } from '../../contants/icon';
 const PortfolioHome = () => {
   const heroSection = () => (
     <section className="max-w-7xl mx-auto px-6 md:px-16 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <div className="inline-flex items-center gap-2 bg-[#1a1a1a] text-gray-300 text-[11px] px-3 py-1.5 rounded-full border border-gray-800 mb-8">
+        <div className="inline-flex items-center gap-2 bg-[#1a1a1a] text-gray-300 text-sm px-3 py-1.5 rounded-full border border-gray-800 mb-8">
           <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
           Sẵn sàng cho các thử thách mới
         </div>
@@ -22,9 +23,9 @@ const PortfolioHome = () => {
         </p>
 
         <div className="flex flex-wrap gap-4 mb-12">
-          <button className="bg-[#b9d1ff] text-black px-8 py-3.5 rounded-xl hover:bg-black hover:text-white font-bold hover:shadow-[0_0_25px_rgba(185,209,255,0.2)] transition-all">
+          <Link to= "/contacts" className='bg-[#b9d1ff] text-black px-8 py-3.5 rounded-xl hover:bg-black hover:text-white font-bold hover:shadow-[0_0_25px_rgba(185,209,255,0.2)] transition-all'>
             Xem dự án
-          </button>
+          </Link>
           <button className="border border-gray-700 px-8 py-3.5 rounded-xl font-bold hover:bg-white hover:text-black cursor-pointer transition-all">
             Tải CV
           </button>
@@ -106,7 +107,7 @@ const PortfolioHome = () => {
           </div>
              <div className="bg-[#151515] p-8 rounded-[2.5rem] border border-gray-800 flex flex-col justify-end min-h-[240px] relative overflow-hidden group hover:border-blue-400/50 transition-all">
             <MyIcon name="bolt:zap-fill" className="text-blue-400 mb-6" size={32} />
-            <h4 className="text-xl font-bold">Tool:<span> Git, Docker, CiCd</span></h4>
+            <h4 className="text-xl font-bold">Tool:<span> Git, Docker, Ci/cd</span></h4>
           </div>
           <div className="bg-[#151515] p-8 rounded-[2.5rem] border border-gray-800 flex flex-col justify-end min-h-[240px] relative overflow-hidden group hover:border-orange-500/50 transition-all">
             <MyIcon name="ic:round-palette" className="text-orange-400 mb-6" size={32} />
