@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { MyIcon } from "../../contants/icon";
+import { useTranslation } from "react-i18next";
+import { usePageAnimation } from "../../hooks/usePageAnimation";
+import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
 
 const projects = [
   {
@@ -11,8 +14,8 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
     links: [
-      { label: "Xem Demo", icon: "material-symbols:link-rounded" },
-      { label: "Github", icon: "material-symbols:code-rounded" },
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
+      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
     ],
   },
   {
@@ -23,6 +26,10 @@ const projects = [
     desc: "Ứng dụng theo dõi sức khỏe và luyện tập cá nhân hóa.",
     image:
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop",
+    links: [
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
+      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+    ],
   },
   {
     id: 3,
@@ -32,6 +39,10 @@ const projects = [
     desc: "Nền tảng bảo mật mạng phát hiện và ngăn chặn DDoS.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
+    links: [
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
+      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+    ],
   },
   {
     id: 4,
@@ -41,6 +52,10 @@ const projects = [
     desc: "Ứng dụng điều khiển đồng hồ thông minh tối giản.",
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
+    links: [
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
+      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+    ],
   },
   {
     id: 5,
@@ -51,22 +66,27 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=800&auto=format&fit=crop",
     links: [
-      {
-        label: "Chi tiết",
-        icon: "material-symbols:visibility-outline-rounded",
-      },
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
+      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
     ],
   },
 ];
 
-const filters = [
-  { label: "Tất cả", value: "all" },
-  { label: "Web App", value: "web-app" },
-  { label: "Mobile App", value: "mobile-app" },
-  { label: "UI/UX Design", value: "ui-ux" },
-];
 const ProjectsPage = () => {
   const [active, setActive] = useState("all");
+  const { t } = useTranslation();
+  const containerRef = usePageAnimation();
+  
+  const headerReveal = useScrollReveal({ y: -30 });
+  const filterReveal = useScrollReveal({ y: 20, delay: 0.2 });
+  const gridReveal = useStaggerReveal('.project-card', { y: 50, stagger: 0.1 });
+
+  const filters = [
+    { label: t('product.all'), value: "all" },
+    { label: t('product.webApp'), value: "web-app" },
+    { label: t('product.mobileApp'), value: "mobile-app" },
+    { label: t('product.uiux'), value: "ui-ux" },
+  ];
 
   const filtered =
     active === "all"
@@ -76,31 +96,35 @@ const ProjectsPage = () => {
   const [featured, ...rest] = filtered;
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
-      <main className="max-w-7xl mx-auto px-6 py-24">
+    <div ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] text-gray-900 dark:text-white relative overflow-hidden transition-colors duration-500">
+      {/* Background Decor */}
+      <div className="absolute top-1/4 -right-64 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute -bottom-64 -left-64 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+
+      <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10">
         
         {/* Hero */}
-        <header className="mb-14">
-          <h1 className="text-5xl font-bold tracking-tight mb-5">
-            Dự án tiêu biểu
+        <header ref={headerReveal} className="mb-14">
+          <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-6 text-gray-900 dark:text-white">
+            {t('product.title')}
+            <span className="text-blue-500 dark:text-cyan-400">.</span>
           </h1>
 
-          <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
-            Khám phá những sản phẩm kỹ thuật số được xây dựng với sự tập trung
-            vào hiệu năng và trải nghiệm người dùng.
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed border-l-2 border-blue-500/50 dark:border-cyan-500/50 pl-6">
+            {t('product.desc')}
           </p>
         </header>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div ref={filterReveal} className="flex flex-wrap gap-3 mb-16">
           {filters.map((f) => (
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`px-5 py-2 rounded-full border text-sm font-medium transition ${
+              className={`px-6 py-2.5 rounded-full border text-sm font-bold tracking-wide uppercase transition-all ${
                 active === f.value
-                  ? "bg-amber-700 text-white border-b-blue-950"
-                  : "bg-white text-gray-600 border-gray-300 hover:border-gray-500"
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white border-transparent shadow-[0_0_20px_rgba(37,99,235,0.3)] dark:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+                  : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-white/10 hover:border-blue-500/50 dark:hover:border-cyan-500/50 hover:text-blue-600 dark:hover:text-white"
               }`}
             >
               {f.label}
@@ -110,74 +134,80 @@ const ProjectsPage = () => {
 
         {/* Grid */}
         {filtered.length > 0 ? (
-          <div className="flex flex-col gap-6">
+          <div ref={gridReveal} className="flex flex-col gap-8">
 
             {/* Top Row */}
-            <div className="grid lg:grid-cols-5 gap-6">
+            <div className="grid lg:grid-cols-5 gap-8">
               
               {/* Featured */}
-              <div className="lg:col-span-3 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm">
-                
-                <div className="h-80 overflow-hidden">
-                  <img
-                    src={featured.image}
-                    alt={featured.title}
-                    className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                  />
-                </div>
-
-                <div className="p-8 flex flex-col">
+              {featured && (
+                <div className="project-card lg:col-span-3 bg-white dark:bg-[#0e1116] rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-blue-500/50 dark:hover:border-cyan-500/50 transition-all duration-500 group relative shadow-xl dark:shadow-none">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#0e1116] z-10"></div>
                   
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {featured.tags.map((tag) => (
-                      <TagBadge key={tag} label={tag} />
-                    ))}
+                  <div className="h-96 overflow-hidden relative">
+                    <img
+                      src={featured.image}
+                      alt={featured.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90 dark:opacity-80 group-hover:opacity-100"
+                    />
                   </div>
 
-                  <h2 className="text-3xl font-bold mb-4 leading-snug">
-                    {featured.title}
-                  </h2>
-
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {featured.desc}
-                  </p>
-
-                  {featured.links && (
-                    <div className="flex gap-6">
-                      {featured.links.map((link) => (
-                        <button
-                          key={link.label}
-                          className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition"
-                        >
-                          <MyIcon name={link.icon} size={18} />
-                          <span>{link.label}</span>
-                        </button>
+                  <div className="p-10 flex flex-col absolute bottom-0 w-full z-20">
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {featured.tags.map((tag) => (
+                        <TagBadge key={tag} label={tag} />
                       ))}
                     </div>
-                  )}
+
+                    <h2 className="text-3xl font-black mb-4 leading-snug text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition-colors">
+                      {featured.title}
+                    </h2>
+
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+                      {featured.desc}
+                    </p>
+
+                    {featured.links && (
+                      <div className="flex flex-wrap gap-4 mt-2">
+                        {featured.links.map((link) => (
+                          <button
+                            key={link.label}
+                            className={`flex items-center gap-2 transition font-bold text-sm px-5 py-2.5 rounded-xl ${
+                              link.primary 
+                                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] cursor-pointer' 
+                                : 'bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-white/80 hover:text-blue-600 cursor-pointer  dark:hover:text-cyan-400 hover:bg-gray-200 dark:hover:bg-white/10'
+                            }`}
+                          >
+                            <MyIcon name={link.icon} size={20} />
+                            <span>{t(link.label)}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Right Card */}
               {rest[0] && (
                 <div className="lg:col-span-2">
-                  <MediumCard project={rest[0]} tall />
+                  <MediumCard project={rest[0]} tall t={t} />
                 </div>
               )}
             </div>
 
             {/* Bottom */}
             {rest.length > 1 && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {rest.slice(1).map((p) => (
-                  <MediumCard key={p.id} project={p} />
+                  <MediumCard key={p.id} project={p} t={t} />
                 ))}
               </div>
             )}
           </div>
         ) : (
-          <p className="text-center text-gray-500 py-20">
-            Không có dự án nào.
+          <p className="text-center text-gray-500 py-32 text-xl font-bold">
+            {t('product.noProjects')}
           </p>
         )}
       </main>
@@ -188,50 +218,54 @@ const ProjectsPage = () => {
 /* COMPONENTS */
 
 const TagBadge = ({ label }) => (
-  <span className="px-3 py-1 rounded-md bg-blue-100 text-blue-700 text-xs font-semibold tracking-wide">
+  <span className="px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-blue-600 dark:text-cyan-300 text-[10px] font-black tracking-widest uppercase shadow-sm">
     {label}
   </span>
 );
 
-const MediumCard = ({ project, tall = false }) => (
+const MediumCard = ({ project, tall = false, t }) => (
   <div
-    className={`bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition ${
+    className={`project-card bg-white dark:bg-[#0e1116] rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-blue-500/50 hover:-translate-y-2 shadow-xl dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 group flex flex-col ${
       tall ? "h-full" : ""
     }`}
   >
-    <div className={`${tall ? "h-[420px]" : "h-[220px]"} overflow-hidden`}>
+    <div className={`${tall ? "h-64 lg:h-1/2" : "h-56"} overflow-hidden relative`}>
+      <div className="absolute inset-0 bg-slate-50/20 dark:bg-[#090b0e]/20 z-10 group-hover:bg-transparent transition-all"></div>
       <img
         src={project.image}
         alt={project.title}
-        className="w-full h-full object-cover hover:scale-105 transition duration-500"
+        className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90 dark:opacity-80 group-hover:opacity-100"
       />
     </div>
 
-    <div className="p-6">
-      
-      <div className="flex flex-wrap gap-2 mb-4">
+    <div className="p-8 flex flex-col flex-1 relative z-20">
+      <div className="flex flex-wrap gap-2 mb-6">
         {project.tags.map((tag) => (
           <TagBadge key={tag} label={tag} />
         ))}
       </div>
 
-      <h3 className="text-xl font-bold mb-3 leading-snug">
+      <h3 className="text-2xl font-bold mb-4 leading-snug text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
         {project.title}
       </h3>
 
-      <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+      <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8 flex-1">
         {project.desc}
       </p>
 
       {project.links && (
-        <div className="flex gap-5 mt-5">
+        <div className="flex flex-wrap gap-3 mt-auto pt-6 border-t border-gray-200 dark:border-white/10">
           {project.links.map((link) => (
             <button
               key={link.label}
-              className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition"
-            >
+              className={`flex items-center gap-2 text-xs transition font-bold uppercase tracking-wider px-4 py-2 rounded-lg ${
+                link.primary 
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-md cursor-pointer' 
+                  : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-200 dark:hover:bg-white/10 cursor-pointer'
+              }`}
+            > 
               <MyIcon name={link.icon} size={16} />
-              <span>{link.label}</span>
+              <span>{t(link.label)}</span>
             </button>
           ))}
         </div>

@@ -1,91 +1,98 @@
-import React from "react";
+
+
+import { useTranslation } from "react-i18next";
+import { usePageAnimation } from "../../hooks/usePageAnimation";
+import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
+import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 const Contact = () => {
+  const { t } = useTranslation();
+  const containerRef = usePageAnimation();
+  
+  const headerReveal = useScrollReveal({ y: -30 });
+  const formReveal = useScrollReveal({ x: -50, delay: 0.2 });
+  const infoReveal = useStaggerReveal('.info-card', { x: 50, stagger: 0.15 });
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-indigo-50 text-gray-800">
-      {/* Main */}
-      <main className="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
-        {/* Header */}
-        <header className="mb-16 text-center max-w-3xl mx-auto">
-          <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-4">
-            Liên hệ
+    <div ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] text-gray-900 dark:text-white relative overflow-hidden transition-colors duration-500">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <main className="pt-32 pb-24 px-6 md:px-16 max-w-7xl mx-auto relative z-10">
+        <header ref={headerReveal} className="mb-20 text-center max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-black tracking-widest uppercase mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
+            {t('contact.contact')}
           </span>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-5 leading-tight">
-            Kết nối với tôi
+          <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+            {t('contact.connect')}
           </h1>
 
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Bạn có ý tưởng dự án hoặc muốn hợp tác? Hãy để lại tin nhắn,
-            tôi sẽ phản hồi sớm nhất có thể.
+          <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl leading-relaxed">
+            {t('contact.desc')}
           </p>
         </header>
 
-        {/* Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* LEFT - FORM */}
-          <div className="lg:col-span-7">
-            <div className="bg-white border border-gray-100 shadow-xl shadow-blue-100/40 rounded-3xl p-8 md:p-10">
-              <form className="space-y-6">
-                {/* Name + Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div ref={formReveal} className="lg:col-span-7">
+            <div className="bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group transition-colors duration-500">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[80px] rounded-full group-hover:bg-cyan-500/10 transition-all pointer-events-none"></div>
+
+              <form className="space-y-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-gray-700">
-                      Họ và tên
+                    <label className="block mb-3 text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      {t('contact.fullname')}
                     </label>
 
                     <input
                       type="text"
-                      placeholder="Nguyễn Văn A"
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                      placeholder={t('contact.placeholderName')}
+                      className="w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#090b0e] px-5 py-4 text-gray-900 dark:text-white outline-none transition-all focus:border-cyan-500 focus:bg-white dark:focus:bg-[#11161d] focus:ring-4 focus:ring-cyan-500/10 placeholder-gray-400 dark:placeholder-gray-600"
                     />
                   </div>
 
                   <div>
-                    <label className="block mb-2 text-sm font-semibold text-gray-700">
-                      Địa chỉ Email
+                    <label className="block mb-3 text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      {t('contact.email')}
                     </label>
 
                     <input
                       type="email"
-                      placeholder="example@gmail.com"
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                      placeholder={t('contact.placeholderEmail')}
+                      className="w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#090b0e] px-5 py-4 text-gray-900 dark:text-white outline-none transition-all focus:border-cyan-500 focus:bg-white dark:focus:bg-[#11161d] focus:ring-4 focus:ring-cyan-500/10 placeholder-gray-400 dark:placeholder-gray-600"
                     />
                   </div>
                 </div>
 
-                {/* Subject */}
                 <div>
-                  <label className="block mb-2 text-sm font-semibold text-gray-700">
-                    Chủ đề
+                  <label className="block mb-3 text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    {t('contact.subject')}
                   </label>
 
                   <input
                     type="text"
-                    placeholder="Hợp tác dự án"
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                    placeholder={t('contact.placeholderSubject')}
+                    className="w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#090b0e] px-5 py-4 text-gray-900 dark:text-white outline-none transition-all focus:border-cyan-500 focus:bg-white dark:focus:bg-[#11161d] focus:ring-4 focus:ring-cyan-500/10 placeholder-gray-400 dark:placeholder-gray-600"
                   />
                 </div>
 
-                {/* Message */}
                 <div>
-                  <label className="block mb-2 text-sm font-semibold text-gray-700">
-                    Tin nhắn
+                  <label className="block mb-3 text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    {t('contact.message')}
                   </label>
 
                   <textarea
                     rows={6}
-                    placeholder="Tôi muốn trao đổi về..."
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none resize-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                    placeholder={t('contact.placeholderMessage')}
+                    className="w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#090b0e] px-5 py-4 text-gray-900 dark:text-white outline-none resize-none transition-all focus:border-cyan-500 focus:bg-white dark:focus:bg-[#11161d] focus:ring-4 focus:ring-cyan-500/10 placeholder-gray-400 dark:placeholder-gray-600"
                   />
                 </div>
-
-                {/* Button */}
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-7 py-3 text-white font-semibold shadow-lg shadow-blue-200 transition hover:scale-[1.02] hover:shadow-xl active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 px-10 py-4 text-white font-black uppercase tracking-widest shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95"
                 >
-                  Gửi tin nhắn
+                  {t('contact.sendMessage')}
                   <span className="material-symbols-outlined text-[20px]">
                     send
                   </span>
@@ -95,74 +102,71 @@ const Contact = () => {
           </div>
 
           {/* RIGHT - INFO */}
-          <div className="lg:col-span-5 space-y-6">
+          <div ref={infoReveal} className="lg:col-span-5 space-y-6">
             {/* Contact Cards */}
-            <div className="space-y-5">
+            <div className="space-y-6">
               {/* Email */}
-              <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-md hover:shadow-xl transition">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-600">
-                    <span className="material-symbols-outlined">
-                      mail
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
+                
+                <div className="flex items-start gap-5 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <span className="material-symbols-outlined text-cyan-500 dark:text-cyan-400 text-3xl">
+                      {/* mail */}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-lg mb-1">Email</h3>
+                    <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">{t('contact.email')}</h3>
 
-                    <p className="text-gray-600">
-                      contact@portfolio.com
-                    </p>
-
-                    <p className="text-gray-600">
-                      support@portfolio.com
+                    <p className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors cursor-pointer">
+                      hungvuong04.dev@gmail.com
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Phone */}
-              <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-md hover:shadow-xl transition">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center text-green-600">
-                    <span className="material-symbols-outlined">
-                      call
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-purple-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[50px] rounded-full group-hover:bg-purple-500/20 transition-all"></div>
+                
+                <div className="flex items-start gap-5 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <span className="material-symbols-outlined text-purple-500 dark:text-purple-400 text-3xl">
+                      {/* call */}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-lg mb-1">
-                      Số điện thoại
+                    <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">
+                      {t('contact.phone')}
                     </h3>
 
-                    <p className="text-gray-600">
-                      +84 (0) 123 456 789
-                    </p>
-
-                    <p className="text-gray-500 text-sm mt-1">
-                      Thứ 2 - Thứ 6, 9:00 - 18:00
+                    <p className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer">
+                      +84 973 244 354
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Address */}
-              <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-md hover:shadow-xl transition">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600">
-                    <span className="material-symbols-outlined">
-                      location_on
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                 <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-[50px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
+                
+                <div className="flex items-start gap-5 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
+                    <span className="material-symbols-outlined text-pink-500 dark:text-pink-400 text-3xl">
+                      {/* location_on */}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-lg mb-1">
-                      Địa chỉ
+                    <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-white">
+                      {t('contact.address')}
                     </h3>
 
-                    <p className="text-gray-600 leading-relaxed">
-                      Tòa nhà Innovation, Công viên phần mềm
-                      Quang Trung, Quận 12, TP. Hồ Chí Minh
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {t('contact.addressDesc')}
                     </p>
                   </div>
                 </div>
@@ -170,36 +174,33 @@ const Contact = () => {
             </div>
 
             {/* Map */}
-            <div className="overflow-hidden rounded-3xl shadow-xl border border-white">
+            <div className="info-card overflow-hidden rounded-[2.5rem] shadow-xl dark:shadow-2xl border border-gray-200 dark:border-white/10 group">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbpO439_5FjXx5GZHTshSXjUJLnADX2at2PUbwfq2ij8_91GDAxrsgFR77JiwyNiwKAChxf8EHfQjT18vW-6fWL72fwyBnfjqQN4pwyfRm3a5c4Edb1poNubFgwL_wfGP8z-yDyiAmAA9RwMZLuTih_bm9zvzAfisUHCzsNCM0hRgKwO8jjpxbg8VDpfAMUa1kwgm8C5h22FFBpCHWEQQK6zU8n1SCAroVHaYeHTLlfzSoEsk6qvhzLbAD8IsfcLRtTo0JRobuCUM"
                 alt="Map"
-                className="w-full h-72 object-cover hover:scale-105 transition duration-700"
+                className="w-full h-80 object-cover mix-blend-luminosity opacity-70 group-hover:mix-blend-normal group-hover:opacity-100 transition duration-700 group-hover:scale-105"
               />
             </div>
 
             {/* Social */}
-            <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-md">
-              <h3 className="font-bold mb-4 text-gray-800">
-                Mạng xã hội
+            <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/5 shadow-xl dark:shadow-lg flex flex-col items-center transition-colors duration-500">
+              <h3 className="font-bold mb-6 text-gray-700 dark:text-gray-300 uppercase tracking-widest text-sm">
+                {t('contact.social')}
               </h3>
 
               <div className="flex gap-4">
                 {[
-                  "public",
-                  "code",
-                  "share",
-                  "chat",
-                ].map((icon, index) => (
-                  <a
+                  { icon: "mingcute:instagram-fill", color: "blue" },
+                  { icon: "mdi:git", color: "cyan" },
+                  { icon: "material-symbols:link", color: "purple" },
+                ].map((item, index) => (
+                  <Link
                     key={index}
-                    href="#"
-                    className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:-translate-y-1"
+                    to="https://www.facebook.com/lehungvuong2004/"
+                    className={`w-14 h-14 rounded-2xl bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:bg-${item.color}-50 dark:hover:bg-${item.color}-500/20 hover:border-${item.color}-300 dark:hover:border-${item.color}-500/40 hover:text-${item.color}-600 dark:hover:text-${item.color}-400 transition-all duration-300 hover:-translate-y-2 shadow-sm`}
                   >
-                    <span className="material-symbols-outlined">
-                      {icon}
-                    </span>
-                  </a>
+                    <Icon icon={item.icon} className="text-[24px]" target="_blank"/>
+                  </Link>
                 ))}
               </div>
             </div>
