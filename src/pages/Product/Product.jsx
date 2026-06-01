@@ -1,75 +1,75 @@
 import  { useState } from "react";
+import { Link } from "react-router-dom";
 import { MyIcon } from "../../contants/icon";
 import { useTranslation } from "react-i18next";
 import { usePageAnimation } from "../../hooks/usePageAnimation";
 import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
-
+import dashboard from "../../assets/Dashboard/phuongBinhHungHoa.png";
+import cauOngLanh from "../../assets/Dashboard/phuongCauOngLanh.png"
 const projects = [
   {
     id: 1,
     category: "web-app",
-    tags: ["WEB APP", "NEXT.JS", "TAILWIND CSS"],
-    title: "Nova Dashboard: Phân tích dữ liệu thời gian thực",
-    desc: "Hệ thống quản trị doanh nghiệp toàn diện với khả năng xử lý hàng triệu điểm dữ liệu mỗi giây.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    tags: ["Reactjs", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Yup", "Formik", "Git" ,"Docker"],
+    title: "Dashboard quản lý doanh nghiệp",
+    desc: "Dashboard quản lý doanh nghiệp toàn diện với khả năng xử lý dữ liệu lớn .",
+    image: dashboard,
     links: [
-      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
-      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "https://dashboard.hcmict.com.vn/", primary: true },
+      { label: "product.github", icon: "material-symbols:code-rounded", url: ""},
     ],
   },
   {
     id: 2,
     category: "mobile-app",
-    tags: ["MOBILE"],
-    title: "FitFlow Mobile",
-    desc: "Ứng dụng theo dõi sức khỏe và luyện tập cá nhân hóa.",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop",
+    tags: ["Dasboard"],
+    title: "Phường cầu ông lãnh",
+    desc: "Dashboard phường cầu ông lãnh.",
+    image: cauOngLanh,
     links: [
-      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
-      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "https://phuongcauonglanh-dashboard.hcmict.com.vn/", primary: true},
+      { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
     ],
   },
   {
     id: 3,
     category: "web-app",
-    tags: ["SECURITY"],
-    title: "ShieldAI Core",
-    desc: "Nền tảng bảo mật mạng phát hiện và ngăn chặn DDoS.",
+    tags: ["Php Laravel", "Reactjs","Microservice", "Taiwindcss", "Yup" , "Formik","Docker","Mysql", "Git"],
+    title: "Job and Booking Board",
+    desc: "Nền tảng tìm kiếm và đặt lịch các dịch vụ 2 chiều",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
     links: [
-      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
-      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
+      { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "", primary: true},
+      { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
     ],
   },
-  {
-    id: 4,
-    category: "mobile-app",
-    tags: ["MOBILE"],
-    title: "Watch Companion",
-    desc: "Ứng dụng điều khiển đồng hồ thông minh tối giản.",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
-    links: [
-      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
-      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
-    ],
-  },
-  {
-    id: 5,
-    category: "ui-ux",
-    tags: ["E-COMMERCE"],
-    title: "Luxe Watch Shop",
-    desc: "Website thương mại điện tử đồng hồ cao cấp.",
-    image:
-      "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=800&auto=format&fit=crop",
-    links: [
-      { label: "product.viewDemo", icon: "material-symbols:link-rounded" },
-      { label: "product.github", icon: "material-symbols:code-rounded", primary: true },
-    ],
-  },
+  // {
+  //   id: 4,
+  //   category: "mobile-app",
+  //   tags: ["MOBILE"],
+  //   title: "Watch Companion",
+  //   desc: "Ứng dụng điều khiển đồng hồ thông minh tối giản.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
+  //   links: [
+  //     { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "", primary: true},
+  //     { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
+  //   ],
+  // },
+  // {
+  //   id: 5,
+  //   category: "ui-ux",
+  //   tags: ["E-COMMERCE"],
+  //   title: "Luxe Watch Shop",
+  //   desc: "Website thương mại điện tử đồng hồ cao cấp.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=800&auto=format&fit=crop",
+  //   links: [
+  //     { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "", primary: true},
+  //     { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
+  //   ],
+  // },
 ];
 
 const ProjectsPage = () => {
@@ -141,46 +141,50 @@ const ProjectsPage = () => {
               
               {/* Featured */}
               {featured && (
-                <div className="project-card lg:col-span-3 bg-white dark:bg-[#0e1116] rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-blue-500/50 dark:hover:border-cyan-500/50 transition-all duration-500 group relative shadow-xl dark:shadow-none">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#0e1116] z-10"></div>
-                  
-                  <div className="h-96 overflow-hidden relative">
+                <div className="project-card lg:col-span-3 bg-gray-900 rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-cyan-500/50 transition-all duration-500 group relative shadow-xl dark:shadow-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent z-10 pointer-events-none"></div>                 
+                  <div className="h-[28rem] overflow-hidden relative">
                     <img
                       src={featured.image}
                       alt={featured.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90 dark:opacity-80 group-hover:opacity-100"
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-50 group-hover:opacity-70"
                     />
                   </div>
 
                   <div className="p-10 flex flex-col absolute bottom-0 w-full z-20">
                     <div className="flex flex-wrap gap-2 mb-5">
                       {featured.tags.map((tag) => (
-                        <TagBadge key={tag} label={tag} />
+                        <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-cyan-300 text-[10px] font-black tracking-widest uppercase shadow-sm backdrop-blur-md">
+                          {tag}
+                        </span>
                       ))}
                     </div>
 
-                    <h2 className="text-3xl font-black mb-4 leading-snug text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition-colors">
+                    <h2 className="text-3xl font-black mb-4 leading-snug text-white group-hover:text-cyan-400 transition-colors">
                       {featured.title}
                     </h2>
 
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+                    <p className="text-gray-300 leading-relaxed mb-8 max-w-2xl">
                       {featured.desc}
                     </p>
 
                     {featured.links && (
                       <div className="flex flex-wrap gap-4 mt-2">
                         {featured.links.map((link) => (
-                          <button
+                          <Link
                             key={link.label}
+                            to={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={`flex items-center gap-2 transition font-bold text-sm px-5 py-2.5 rounded-xl ${
                               link.primary 
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] cursor-pointer' 
-                                : 'bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-white/80 hover:text-blue-600 cursor-pointer  dark:hover:text-cyan-400 hover:bg-gray-200 dark:hover:bg-white/10'
+                                ? 'bg-cyan-500 hover:bg-cyan-400 text-gray-900 shadow-[0_4px_14px_0_rgba(34,211,238,0.39)]' 
+                                : 'bg-white/10 text-white hover:text-cyan-300 hover:bg-white/20 backdrop-blur-md'
                             }`}
                           >
                             <MyIcon name={link.icon} size={20} />
                             <span>{t(link.label)}</span>
-                          </button>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -256,8 +260,11 @@ const MediumCard = ({ project, tall = false, t }) => (
       {project.links && (
         <div className="flex flex-wrap gap-3 mt-auto pt-6 border-t border-gray-200 dark:border-white/10">
           {project.links.map((link) => (
-            <button
+            <Link
               key={link.label}
+              to={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`flex items-center gap-2 text-xs transition font-bold uppercase tracking-wider px-4 py-2 rounded-lg ${
                 link.primary 
                   ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-md cursor-pointer' 
@@ -266,7 +273,7 @@ const MediumCard = ({ project, tall = false, t }) => (
             > 
               <MyIcon name={link.icon} size={16} />
               <span>{t(link.label)}</span>
-            </button>
+            </Link>
           ))}
         </div>
       )}

@@ -76,7 +76,7 @@ const PortfolioHome = () => {
 
           {/* IMAGE AREA */}
           <div ref={imageReveal} className="relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[450px]">
+            <div className="relative w-full max-w-md">
               {/* Decorative background for image */}
               <div className="absolute inset-0 bg-linear-to-tr from-cyan-500 to-purple-600 rounded-[2.5rem] blur-2xl opacity-20 transform rotate-3 scale-105"></div>
 

@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react";
 const Contact = () => {
   const { t } = useTranslation();
   const containerRef = usePageAnimation();
-  
+
   const headerReveal = useScrollReveal({ y: -30 });
   const formReveal = useScrollReveal({ x: -50, delay: 0.2 });
   const infoReveal = useStaggerReveal('.info-card', { x: 50, stagger: 0.15 });
@@ -56,7 +56,6 @@ const Contact = () => {
                     <label className="block mb-3 text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                       {t('contact.email')}
                     </label>
-
                     <input
                       type="email"
                       placeholder={t('contact.placeholderEmail')}
@@ -90,12 +89,9 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 px-10 py-4 text-white font-black uppercase tracking-widest shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-gray-900 dark:bg-white dark:text-gray-900 px-10 py-4 text-white font-black uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-95"
                 >
                   {t('contact.sendMessage')}
-                  <span className="material-symbols-outlined text-[20px]">
-                    send
-                  </span>
                 </button>
               </form>
             </div>
@@ -106,14 +102,12 @@ const Contact = () => {
             {/* Contact Cards */}
             <div className="space-y-6">
               {/* Email */}
-              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                 <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
-                
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
+
                 <div className="flex items-start gap-5 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
-                    <span className="material-symbols-outlined text-cyan-500 dark:text-cyan-400 text-3xl">
-                      {/* mail */}
-                    </span>
+                    <Icon icon="ic:outline-email" class="text-cyan-500 dark:text-cyan-400 text-3xl"></Icon>
                   </div>
 
                   <div>
@@ -127,14 +121,13 @@ const Contact = () => {
               </div>
 
               {/* Phone */}
-              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-purple-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                 <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[50px] rounded-full group-hover:bg-purple-500/20 transition-all"></div>
-                
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-purple-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[50px] rounded-full group-hover:bg-purple-500/20 transition-all"></div>
+
                 <div className="flex items-start gap-5 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
-                    <span className="material-symbols-outlined text-purple-500 dark:text-purple-400 text-3xl">
-                      {/* call */}
-                    </span>
+                    {/* call */}
+                    <Icon icon="ic:outline-phone" className="text-purple-500 dark:text-purple-400 text-3xl"></Icon>
                   </div>
 
                   <div>
@@ -150,14 +143,12 @@ const Contact = () => {
               </div>
 
               {/* Address */}
-              <div className="info-card bg-white dark:bg-[#0e1116] rounded-[2rem] p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                 <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-[50px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
-                
+              <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-[50px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
+
                 <div className="flex items-start gap-5 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
-                    <span className="material-symbols-outlined text-pink-500 dark:text-pink-400 text-3xl">
-                      {/* location_on */}
-                    </span>
+                  <div className="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform shrink-0">
+                    <Icon icon="boxicons:location" className="material-symbols-outlined text-pink-500 dark:text-pink-400 text-3xl"></Icon>
                   </div>
 
                   <div>
@@ -190,16 +181,17 @@ const Contact = () => {
 
               <div className="flex gap-4">
                 {[
-                  { icon: "mingcute:instagram-fill", color: "blue" },
+                  { icon: "ic:baseline-facebook", color: "blue" },
                   { icon: "mdi:git", color: "cyan" },
                   { icon: "material-symbols:link", color: "purple" },
                 ].map((item, index) => (
                   <Link
                     key={index}
+                    target="_blank"
                     to="https://www.facebook.com/lehungvuong2004/"
                     className={`w-14 h-14 rounded-2xl bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:bg-${item.color}-50 dark:hover:bg-${item.color}-500/20 hover:border-${item.color}-300 dark:hover:border-${item.color}-500/40 hover:text-${item.color}-600 dark:hover:text-${item.color}-400 transition-all duration-300 hover:-translate-y-2 shadow-sm`}
                   >
-                    <Icon icon={item.icon} className="text-[24px]" target="_blank"/>
+                    <Icon icon={item.icon} className="text-[24px]" target="_blank" />
                   </Link>
                 ))}
               </div>

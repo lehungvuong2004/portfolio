@@ -21,7 +21,7 @@ const resources = {
       home: {
         ready: "Sẵn sàng cho các thử thách mới",
         hello: "Xin chào, mình là",
-        role: "Intern Frontend Developer",
+        role: "Fresher Frontend Developer",
         desc: "Kiến tạo trải nghiệm người dùng hiện đại thông qua sự tối giản, hiệu suất và những dòng mã tinh tế. Chuyên gia trong việc chuyển đổi ý tưởng thành các ứng dụng web đẳng cấp thế giới.",
         viewProject: "Xem dự án",
         downloadCV: "Tải CV",
@@ -42,7 +42,7 @@ const resources = {
         aboutDesc: "Tôi là một kỹ sư phần mềm có kinh nghiệm thực chiến trong việc xây dựng các sản phẩm kỹ thuật số tập trung vào trải nghiệm người dùng và hiệu suất tối ưu.",
         careerJourney: "Hành trình nghề nghiệp",
         internRole: "Thực Tập Sinh - VNPT Hồ Chí Minh",
-        internTime: "2026 — Hiện tại",
+        internTime: "03/2026 — 06/2026",
         internDesc: "Học hỏi và phát triển frontend cho các dự án thương mại điện tử quy mô lớn, tối ưu hóa tốc độ tải trang lên đến 40%.",
         studentRole: "Sinh viên tại trường Đại Học Công Nghệ Sài Gòn",
         studentTime: "2022 — 2026",
@@ -74,7 +74,6 @@ const resources = {
         desc: "Khám phá những sản phẩm kỹ thuật số được xây dựng với sự tập trung vào hiệu năng và trải nghiệm người dùng.",
         all: "Tất cả",
         webApp: "Web App",
-        mobileApp: "Mobile App",
         uiux: "UI/UX Design",
         viewDemo: "Xem Demo",
         github: "Github",
@@ -180,7 +179,6 @@ const resources = {
         desc: "Discover digital products built with a focus on performance and user experience.",
         all: "All",
         webApp: "Web App",
-        mobileApp: "Mobile App",
         uiux: "UI/UX Design",
         viewDemo: "Live Demo",
         github: "Github",
@@ -227,5 +225,12 @@ i18n
       escapeValue: false
     }
   });
+
+  // thêm localStorage
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang) {
+    i18n.changeLanguage(savedLang);
+  }
+  
 
 export default i18n;

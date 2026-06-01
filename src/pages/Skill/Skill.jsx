@@ -2,11 +2,12 @@ import { MyIcon } from "../../contants/icon";
 import { useTranslation } from "react-i18next";
 import { usePageAnimation } from "../../hooks/usePageAnimation";
 import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
+import { Icon } from "@iconify/react";
 
 const SkillsPortfolio = () => {
   const { t } = useTranslation();
   const containerRef = usePageAnimation();
-  
+
   const headerReveal = useScrollReveal({ y: -30 });
   const bentoReveal = useStaggerReveal('.bento-item', { y: 50, stagger: 0.15 });
 
@@ -15,7 +16,7 @@ const SkillsPortfolio = () => {
       {/* Background Orbs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
-      
+
       <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10">
         {/* Hero */}
         <header ref={headerReveal} className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -37,7 +38,7 @@ const SkillsPortfolio = () => {
           {/* Frontend */}
           <section className="bento-item lg:col-span-2 row-span-2 bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 dark:bg-cyan-500/5 blur-[80px] rounded-full group-hover:bg-blue-500/10 dark:group-hover:bg-cyan-500/10 transition-all"></div>
-            
+
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 dark:bg-cyan-500/10 flex items-center justify-center border border-blue-500/20 dark:border-cyan-500/20 group-hover:scale-110 transition-transform">
@@ -54,57 +55,25 @@ const SkillsPortfolio = () => {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <SkillCard icon="mdi:react" label="React" topLabel="JS" color="cyan" />
+                <SkillCard icon="tabler:brand-redux" label="Redux Toolkit" topLabel="State" color="purple" />
                 <SkillCard icon="mdi:language-typescript" label="TypeScript" topLabel="< >" color="blue" />
                 <SkillCard icon="mdi:tailwind" label="TailwindCSS" topLabel="CSS" color="cyan" />
+                <SkillCard icon="mdi:bootstrap" label="Bootstrap" topLabel="CSS" color="pink" />
                 <SkillCard icon="material-symbols:fact-check-outline-rounded" label="Yup" topLabel="Valid" color="emerald" />
                 <SkillCard icon="material-symbols:dynamic-form-outline-rounded" label="Formik" topLabel="Form" color="pink" />
-                <SkillCard icon="tabler:brand-redux" label="Redux Toolkit" topLabel="State" color="purple" />
-                <SkillCard icon="mdi:state-machine" label="Zustand" topLabel="State" color="orange" />
+                {/* <SkillCard icon="mdi:state-machine" label="Zustand" topLabel="State" color="orange" /> */}
                 <SkillCard icon="mdi:language-javascript" label="Javascript" topLabel="JS" color="orange" />
-                <SkillCard icon="mdi:language-html5" label="HTML/CSS" topLabel="Web" color="blue" />
                 <SkillCard icon="mdi:lighthouse" label="Lighthouse" topLabel="Perf" color="emerald" />
+                <SkillCard icon="simple-icons:bem" label="BEM" topLabel="BEM" color="orange" />
+                <SkillCard icon="mdi:language-html5" label="HTML/CSS" topLabel="Web" color="blue" />
               </div>
             </div>
           </section>
-
-          {/* Tools */}
-          <section className="bento-item bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-orange-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden flex flex-col">
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/10 blur-[60px] rounded-full group-hover:bg-orange-500/20 transition-all"></div>
-            
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center border border-orange-500/20 group-hover:-translate-y-1 transition-transform">
-                  <MyIcon
-                    name="material-symbols:construction-rounded"
-                    size={24}
-                    className="text-orange-500 dark:text-orange-400"
-                  />
-                </div>
-                <h2 className="text-2xl font-black text-gray-900 dark:text-white">{t('skill.tools')}</h2>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-8">
-                {["Git", "Docker", "VS Code", "Postman", "Vercel", "Render", "Figma","Claude","Copilot"].map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-500/20 hover:text-orange-600 dark:hover:text-orange-300 hover:border-orange-300 dark:hover:border-orange-500/30 transition-all cursor-default"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-
-              <p className="mt-auto text-sm text-gray-500 leading-relaxed font-medium">
-                {t('skill.toolsDesc')}
-              </p>
-            </div>
-          </section>
-
           {/* Backend */}
           <section className="bento-item bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-emerald-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 blur-[60px] rounded-full group-hover:bg-emerald-500/20 transition-all"></div>
-            
-             <div className="relative z-10">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 blur-[60px] rounded-full group-hover:bg-emerald-500/20 transition-all"></div>
+
+            <div className="relative z-10">
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:-translate-y-1 transition-transform">
                   <MyIcon
@@ -133,19 +102,50 @@ const SkillsPortfolio = () => {
               </div>
             </div>
           </section>
+          {/* Tools */}
+          <section className="bento-item bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-orange-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden flex flex-col">
+            <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/10 blur-[60px] rounded-full group-hover:bg-orange-500/20 transition-all"></div>
+
+            <div className="relative z-10 flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center border border-orange-500/20 group-hover:-translate-y-1 transition-transform">
+                  <MyIcon
+                    name="material-symbols:construction-rounded"
+                    size={24}
+                    className="text-orange-500 dark:text-orange-400"
+                  />
+                </div>
+                <h2 className="text-2xl font-black text-gray-900 dark:text-white">{t('skill.tools')}</h2>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Git", "Docker", "VS Code", "Postman", "Vercel", "Render", "Figma", "Claude", "Copilot"].map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-4 py-2 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-500/20 hover:text-orange-600 dark:hover:text-orange-300 hover:border-orange-300 dark:hover:border-orange-500/30 transition-all cursor-default"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+
+              <p className="mt-auto text-sm text-gray-500 leading-relaxed font-medium">
+                {t('skill.toolsDesc')}
+              </p>
+            </div>
+          </section>
+
+
 
           {/* UI UX */}
           <section className="bento-item lg:col-span-3 row-span-1 bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] border border-gray-200 dark:border-white/10 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden flex flex-col md:flex-row">
             <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-500/10 blur-[80px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
-            
+
             <div className="p-8 md:p-10 flex-1 relative z-10 flex flex-col justify-center">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform">
-                  <MyIcon
-                    name="material-symbols:brush-outline-rounded"
-                    size={28}
-                    className="text-pink-500 dark:text-pink-400"
-                  />
+
+                  <Icon icon="mdi:design" className="text-pink-500 dark:text-pink-400"></Icon>
                 </div>
 
                 <h2 className="text-3xl font-black text-gray-900 dark:text-white">
@@ -165,8 +165,8 @@ const SkillsPortfolio = () => {
             </div>
 
             <div className="md:w-5/12 h-64 md:h-auto relative overflow-hidden group-hover:scale-105 transition-transform duration-700">
-               <div className="absolute inset-0 bg-gradient-to-r from-white dark:from-[#0e1116] via-transparent to-transparent z-10 hidden md:block"></div>
-               <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0e1116] via-transparent to-transparent z-10 md:hidden"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white dark:from-[#0e1116] via-transparent to-transparent z-10 hidden md:block"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0e1116] via-transparent to-transparent z-10 md:hidden"></div>
               <img
                 alt="Design Showcase"
                 className="w-full h-full object-cover mix-blend-normal opacity-90 dark:opacity-60 dark:mix-blend-luminosity group-hover:opacity-100 dark:group-hover:mix-blend-normal transition-all duration-700"
@@ -181,11 +181,11 @@ const SkillsPortfolio = () => {
   );
 };
 
-const SkillCard = ({ icon, label, topLabel, color="blue" }) => (
+const SkillCard = ({ icon, label, topLabel, color = "blue" }) => (
   <div className={`bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-${color}-50 dark:hover:bg-${color}-500/10 hover:border-${color}-300 dark:hover:border-${color}-500/30 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group shadow-sm dark:shadow-none`}>
     {/* Optional Glow inside card */}
     <div className={`absolute -inset-2 bg-${color}-500/10 dark:bg-${color}-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-    
+
     <div className="relative z-10 flex flex-col items-center">
       {topLabel && (
         <span className={`text-[10px] font-black text-${color}-500 dark:text-${color}-400 mb-3 tracking-widest uppercase`}>

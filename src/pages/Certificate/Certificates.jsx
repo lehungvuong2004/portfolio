@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { usePageAnimation } from '../../hooks/usePageAnimation';
 import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
 
-import vnptImg from '../../assets/vnpt.png';
+import vnptImg from '../../assets/chungchi_2.jpg';
 import htmlcssImg from '../../assets/htmlcss.png';
 import javascriptImg from '../../assets/javascript.png';
-import heroImg from '../../assets/hero.png';
+// import heroImg from '../../assets/hero.png';
+import uxuiImg from '../../assets/ux.jpg';
 
 const Certificates = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const Certificates = () => {
       id: 1,
       title: 'Chứng chỉ thực tập',
       org: 'Tổng công ty Dịch vụ Viễn thông (VNPT)',
-      year: '2023',
+      year: '2026',
       category: 'DEVELOPMENT',
       image: vnptImg,
     },
@@ -35,36 +36,28 @@ const Certificates = () => {
       id: 2,
       title: 'Html/css',
       org: 'HTML & CSS BASIC',
-      year: '2024',
+      year: '2025',
       category: 'Website',
       image: htmlcssImg,
+    },
+        {
+      id: 4,
+      title: 'UX/UI',
+      org: 'UI/UX DESIGN BASIC',
+      year: '2025',
+      category: 'Website',
+      image: uxuiImg,
     },
     {
       id: 3,
       title: 'JavaScript',
       org: 'JavaScript BASIC',
       year: '2026',
-      category: 'DESIGN',
+      category: 'Website',
       image: javascriptImg,
     },
    
-    {
-      id: 4,
-      title: 'UX/UI',
-      org: 'UI/UX DESIGN BASIC',
-      year: '2026',
-      category: 'CLOUD',
-      image: heroImg,
-    },
-    // {
-    //   id: 5,
-    //   title: 'Project Management Professional (PMP)',
-    //   org: 'PMI Institute',
-    //   year: '2022',
-    //   category: 'MANAGEMENT',
-    //   image:
-    //     'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1000&auto=format&fit=crop',
-    // },
+
   ];
 
   return (
@@ -148,7 +141,7 @@ const Certificates = () => {
                 <div className="mt-auto">
                   <button 
                     onClick={() => window.open(cert.image, '_blank')}
-                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-600 dark:hover:bg-purple-600 text-purple-700 dark:text-purple-300 hover:text-white dark:hover:text-white text-sm font-bold rounded-xl transition-all duration-300 border border-purple-100 dark:border-purple-500/20"
+                    className="cursor-pointer flex items-center justify-center gap-2 w-full py-2.5 bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-600 dark:hover:bg-purple-600 text-purple-700 dark:text-purple-300 hover:text-white dark:hover:text-white text-sm font-bold rounded-xl transition-all duration-300 border border-purple-100 dark:border-purple-500/20"
                   >
                     <MyIcon name="material-symbols:visibility-rounded" size={18} />
                     {t('certificate.showBtn')}
@@ -159,7 +152,7 @@ const Certificates = () => {
           ))}
 
           {/* Empty Card */}
-          <div className="cert-item min-h-[400px] rounded-[2.5rem] border-2 border-dashed border-gray-300 dark:border-white/10 bg-gray-50 dark:bg-[#0e1116]/50 flex flex-col items-center justify-center p-10 opacity-70 hover:opacity-100 hover:border-gray-400 dark:hover:border-white/30 transition-all flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)] snap-start cursor-pointer group shadow-inner dark:shadow-none">
+          <div className="cert-item min-h-96 rounded-[2.5rem] border-2 border-dashed border-gray-300 dark:border-white/10 bg-gray-50 dark:bg-[#0e1116]/50 flex flex-col items-center justify-center p-10 opacity-70 hover:opacity-100 hover:border-gray-400 dark:hover:border-white/30 transition-all flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)] snap-start cursor-pointer group shadow-inner dark:shadow-none">
             <div className="w-20 h-20 rounded-full border border-gray-300 dark:border-white/20 bg-gray-100 dark:bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20 group-hover:border-purple-300 dark:group-hover:border-purple-500/30 transition-all duration-500 shadow-xl">
               <MyIcon
                 name="material-symbols:add-rounded"
