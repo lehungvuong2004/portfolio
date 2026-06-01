@@ -21,8 +21,8 @@ const projects = [
   },
   {
     id: 2,
-    category: "mobile-app",
-    tags: ["Dasboard"],
+    category: "web-app",
+    tags: ["Dashboard"],
     title: "Phường cầu ông lãnh",
     desc: "Dashboard phường cầu ông lãnh.",
     image: cauOngLanh,
@@ -44,32 +44,6 @@ const projects = [
       { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
     ],
   },
-  // {
-  //   id: 4,
-  //   category: "mobile-app",
-  //   tags: ["MOBILE"],
-  //   title: "Watch Companion",
-  //   desc: "Ứng dụng điều khiển đồng hồ thông minh tối giản.",
-  //   image:
-  //     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
-  //   links: [
-  //     { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "", primary: true},
-  //     { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
-  //   ],
-  // },
-  // {
-  //   id: 5,
-  //   category: "ui-ux",
-  //   tags: ["E-COMMERCE"],
-  //   title: "Luxe Watch Shop",
-  //   desc: "Website thương mại điện tử đồng hồ cao cấp.",
-  //   image:
-  //     "https://images.unsplash.com/photo-1547996160-81dfa63595aa?q=80&w=800&auto=format&fit=crop",
-  //   links: [
-  //     { label: "product.viewDemo", icon: "material-symbols:link-rounded", url: "", primary: true},
-  //     { label: "product.github", icon: "material-symbols:code-rounded", url: "", },
-  //   ],
-  // },
 ];
 
 const ProjectsPage = () => {
@@ -83,9 +57,7 @@ const ProjectsPage = () => {
 
   const filters = [
     { label: t('product.all'), value: "all" },
-    { label: t('product.webApp'), value: "web-app" },
-    { label: t('product.mobileApp'), value: "mobile-app" },
-    { label: t('product.uiux'), value: "ui-ux" },
+    { label: t('product.webApp'), value: "web-app" }
   ];
 
   const filtered =

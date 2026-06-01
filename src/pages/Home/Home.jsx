@@ -23,9 +23,9 @@ const PortfolioHome = () => {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen"></div>
 
       <>
-        <div className="max-w-7xl mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
-          <div ref={heroReveal}>
-            <div className="inline-flex items-center gap-3 bg-gray-100 dark:bg-white/5 backdrop-blur-md text-blue-500 dark:text-cyan-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 mb-8 shadow-[0_0_15px_rgba(37,99,235,0.15)] dark:shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+        <div className="max-w-7xl mx-auto px-6 md:px-16 flex flex-col lg:grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+          <div ref={heroReveal} className="order-1 flex flex-col">
+            <div className="inline-flex items-center gap-3 bg-gray-100 dark:bg-white/5 backdrop-blur-md text-blue-500 dark:text-cyan-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 mb-8 shadow-[0_0_15px_rgba(37,99,235,0.15)] dark:shadow-[0_0_15px_rgba(34,211,238,0.15)] w-fit">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 dark:bg-cyan-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500 dark:bg-cyan-500"></span>
@@ -57,25 +57,10 @@ const PortfolioHome = () => {
                 {t('home.downloadCV')}
               </button>
             </div>
-
-            <div ref={statsReveal} className="flex gap-12 lg:gap-16 border-t border-gray-200 dark:border-white/10 pt-10">
-              <div className="stat-item">
-                <div className="text-5xl font-black text-gray-900 dark:text-white flex items-center">
-                  3<span className="text-blue-500 dark:text-cyan-400">+</span>
-                </div>
-                <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] mt-3 font-bold">{t('home.monthsExp')}</div>
-              </div>
-              <div className="stat-item">
-                <div className="text-5xl font-black text-gray-900 dark:text-white flex items-center">
-                  10<span className="text-purple-500 dark:text-purple-400">+</span>
-                </div>
-                <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] mt-3 font-bold">{t('home.projectsCompleted')}</div>
-              </div>
-            </div>
           </div>
 
           {/* IMAGE AREA */}
-          <div ref={imageReveal} className="relative flex justify-center lg:justify-end">
+          <div ref={imageReveal} className="relative flex justify-center lg:justify-end order-2 lg:row-span-2">
             <div className="relative w-full max-w-md">
               {/* Decorative background for image */}
               <div className="absolute inset-0 bg-linear-to-tr from-cyan-500 to-purple-600 rounded-[2.5rem] blur-2xl opacity-20 transform rotate-3 scale-105"></div>
@@ -101,6 +86,23 @@ const PortfolioHome = () => {
               </div>
             </div>
           </div>
+
+          {/* STATS AREA */}
+          <div ref={statsReveal} className="order-3 flex gap-12 lg:gap-16 border-t lg:border-t-0 border-gray-200 dark:border-white/10 pt-10 lg:pt-0">
+            <div className="stat-item">
+              <div className="text-5xl font-black text-gray-900 dark:text-white flex items-center">
+                3<span className="text-blue-500 dark:text-cyan-400">+</span>
+              </div>
+              <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] mt-3 font-bold">{t('home.monthsExp')}</div>
+            </div>
+            <div className="stat-item">
+              <div className="text-5xl font-black text-gray-900 dark:text-white flex items-center">
+                10<span className="text-purple-500 dark:text-purple-400">+</span>
+              </div>
+              <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] mt-3 font-bold">{t('home.projectsCompleted')}</div>
+            </div>
+          </div>
+
         </div>
       </>
     </section>
