@@ -17,7 +17,7 @@ const SkillsPortfolio = () => {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
 
-      <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10">
+      <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10 mt-16 lg:mt-0">
         {/* Hero */}
         <header ref={headerReveal} className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>

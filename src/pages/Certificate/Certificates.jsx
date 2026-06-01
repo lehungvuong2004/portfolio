@@ -26,7 +26,7 @@ const Certificates = () => {
   const certificateList = [
      {
       id: 1,
-      title: 'Chứng chỉ thực tập',
+      title: t('certificate.cert1Title'),
       org: 'Tổng công ty Dịch vụ Viễn thông (VNPT)',
       year: '2026',
       category: 'DEVELOPMENT',
@@ -34,7 +34,7 @@ const Certificates = () => {
     },
     {
       id: 2,
-      title: 'Html/css',
+      title: t('certificate.cert2Title'),
       org: 'HTML & CSS BASIC',
       year: '2025',
       category: 'Website',
@@ -42,7 +42,7 @@ const Certificates = () => {
     },
         {
       id: 4,
-      title: 'UX/UI',
+      title: t('certificate.cert3Title'),
       org: 'UI/UX DESIGN BASIC',
       year: '2025',
       category: 'Website',
@@ -50,7 +50,7 @@ const Certificates = () => {
     },
     {
       id: 3,
-      title: 'JavaScript',
+      title: t('certificate.cert4Title'),
       org: 'JavaScript BASIC',
       year: '2026',
       category: 'Website',

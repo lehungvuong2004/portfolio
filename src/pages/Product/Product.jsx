@@ -73,7 +73,7 @@ const ProjectsPage = () => {
       <div className="absolute top-1/4 -right-64 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
       <div className="absolute -bottom-64 -left-64 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
 
-      <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10">
+      <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10 mt-16 lg:mt-0">
         
         {/* Hero */}
         <header ref={headerReveal} className="mb-14">

@@ -84,7 +84,11 @@ const resources = {
         desc: "Tổng hợp các bằng cấp và chứng chỉ từ các tổ chức công nghệ hàng đầu thế giới, minh chứng cho sự nỗ lực và quá trình học tập không ngừng nghỉ.",
         updating: "Đang cập nhật",
         updatingDesc: "Chứng chỉ tiếp theo đang trong quá trình hoàn thiện",
-        showBtn: "Xem chứng chỉ"
+        showBtn: "Xem chứng chỉ",
+        cert1Title: "Chứng chỉ thực tập",
+        cert2Title: "Html/css",
+        cert3Title: "UX/UI",
+        cert4Title: "JavaScript"
       },
       contact: {
         contact: "Liên hệ",
@@ -188,7 +192,11 @@ const resources = {
         desc: "A collection of degrees and certificates from top technology organizations in the world, proving the continuous effort and learning process.",
         updating: "Updating",
         updatingDesc: "The next certificate is in the process of completion",
-        showBtn: "Show Certificate"
+        showBtn: "Show Certificate",
+        cert1Title: "Internship Certificate",
+        cert2Title: "Html/css",
+        cert3Title: "UX/UI",
+        cert4Title: "JavaScript"
       },
       contact: {
         contact: "Contact",
