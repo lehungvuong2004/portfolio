@@ -14,7 +14,9 @@ const Header = () => {
     isDarkMode,
     setIsDarkMode,
     changeLanguage,
-    navLinks
+    navLinks,
+    isMobileMenuOpen,
+    setIsMobileMenuOpen
   } = useHeaderHook();
 
   return (
@@ -98,12 +100,48 @@ const Header = () => {
           </div>
           <Link 
             to="/contacts" 
-            className='header-item hidden sm:flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all active:scale-95'
+            className='header-item hidden lg:flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all active:scale-95'
           >
             {t('header.contactNow')}
           </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden header-item w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-all active:scale-95"
+            aria-label="Toggle Mobile Menu"
+          >
+            <MyIcon name={isMobileMenuOpen ? "material-symbols:close-rounded" : "material-symbols:menu"} size={20} />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Navigation Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#090b0e]/95 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 shadow-2xl animate-fade-in">
+          <div className="px-6 py-4 flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`p-3 rounded-xl text-base font-bold transition-all ${
+                  location.pathname === link.path
+                    ? 'bg-blue-50 dark:bg-white/10 text-blue-600 dark:text-cyan-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5'
+                }`}
+              >
+                {t(link.label)}
+              </Link>
+            ))}
+            <Link 
+              to="/contacts" 
+              className="mt-4 flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-3.5 rounded-xl text-sm font-bold shadow-lg active:scale-95 transition-transform"
+            >
+              {t('header.contactNow')}
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

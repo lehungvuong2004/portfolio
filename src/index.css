@@ -7,19 +7,31 @@
   }
 }
 
-@variant dark (&:where(.dark, .dark *));
-/* Custom scrollbar for dark mode */
-.dark ::-webkit-scrollbar {
+/* Custom scrollbar globally to prevent layout shift */
+::-webkit-scrollbar {
   width: 8px;
 }
 
+::-webkit-scrollbar-track {
+  background: #f3f4f6; /* Light mode track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db; /* Light mode thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af; /* Light mode thumb hover */
+}
+
+/* Custom scrollbar colors for dark mode */
 .dark ::-webkit-scrollbar-track {
   background: #090b0e;
 }
 
 .dark ::-webkit-scrollbar-thumb {
   background: #11161d;
-  border-radius: 4px;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {

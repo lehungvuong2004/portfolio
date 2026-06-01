@@ -10,11 +10,16 @@ export const useHeaderHook = () => {
   const langRef = useRef<HTMLDivElement>(null);
   
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark' || 
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -74,6 +79,8 @@ export const useHeaderHook = () => {
     isDarkMode,
     setIsDarkMode,
     changeLanguage,
-    navLinks
+    navLinks,
+    isMobileMenuOpen,
+    setIsMobileMenuOpen
   };
 };
