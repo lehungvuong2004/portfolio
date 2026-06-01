@@ -7,6 +7,8 @@
   }
 }
 
+@variant dark (&:where(.dark, .dark *));
+
 /* Custom scrollbar globally to prevent layout shift */
 ::-webkit-scrollbar {
   width: 8px;
