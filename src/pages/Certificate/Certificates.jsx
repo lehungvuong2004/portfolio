@@ -1,17 +1,16 @@
-import { MyIcon } from '../../contants/icon';
+﻿import { MyIcon } from '../../contants/icon';
 import { useTranslation } from 'react-i18next';
-import { usePageAnimation } from '../../hooks/usePageAnimation';
-import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
+import { usePageAnimation } from "../../gsap";
+import { useScrollReveal, useStaggerReveal } from "../../gsap";
 
-import vnptImg from '../../assets/chungchi_2.jpg';
-import htmlcssImg from '../../assets/htmlcss.png';
-import javascriptImg from '../../assets/javascript.png';
-// import heroImg from '../../assets/hero.png';
-import uxuiImg from '../../assets/ux.jpg';
+import vnptImg from '../../assets/chungchi_2.webp';
+import htmlcssImg from '../../assets/htmlcss.webp';
+import javascriptImg from '../../assets/javascript.webp';
+import uxuiImg from '../../assets/ux.webp';
 
 const Certificates = () => {
   const { t } = useTranslation();
-  const containerRef = usePageAnimation();
+  const containerRef = usePageAnimation('scale');
   const headerReveal = useScrollReveal({ y: -30 });
   const listReveal = useStaggerReveal('.cert-item', { x: 50, stagger: 0.1 });
 
@@ -63,7 +62,7 @@ const Certificates = () => {
   return (
     <main ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] relative overflow-hidden transition-colors duration-500">
       {/* Background Decor */}
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute top-1/3 left-1/4 w-[37.5rem] h-[37.5rem] bg-purple-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-16 pt-32 pb-20 relative z-10">
         {/* Header */}
@@ -120,7 +119,7 @@ const Certificates = () => {
               {/* Content */}
               <div className="p-8 relative z-20 -mt-10 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="px-4 py-1.5 rounded-lg border border-purple-200 dark:border-white/10 bg-purple-50 dark:bg-[#090b0e] text-[10px] tracking-widest font-black text-purple-600 dark:text-purple-400 uppercase shadow-md">
+                  <span className="px-4 py-1.5 rounded-lg border border-purple-200 dark:border-white/10 bg-purple-50 dark:bg-[#090b0e] text-[0.625rem] tracking-widest font-black text-purple-600 dark:text-purple-400 uppercase shadow-md">
                     {cert.category}
                   </span>
 

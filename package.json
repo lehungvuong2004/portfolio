@@ -10,6 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/boxicons": "^1.2.0",
+    "@iconify-json/entypo": "^1.2.1",
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/ix": "^1.2.11",
+    "@iconify-json/lucide": "^1.2.111",
+    "@iconify-json/material-symbols": "^1.2.76",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ri": "^1.2.10",
+    "@iconify-json/simple-icons": "^1.2.85",
+    "@iconify-json/solar": "^1.2.5",
+    "@iconify-json/tabler": "^1.2.35",
+    "@iconify-json/twemoji": "^1.2.5",
     "@tailwindcss/vite": "^4.2.4",
     "gsap": "^3.15.0",
     "i18next": "^26.2.0",

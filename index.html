@@ -1,11 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lê Hùng Vương - Portfolio. Chuyên gia phát triển ứng dụng Web và Mobile với React, TailwindCSS, và Laravel." />
+    <meta name="description" content="Lê Hùng Vương - Portfolio. Chuyên gia phát triển ứng dụng Web với React, TailwindCSS, và Laravel." />
+    <meta name="theme-color" content="#090b0e" />
+
     <title>Lê Hùng Vương | Portfolio</title>
+
+    <!-- Preconnect critical origins first -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- 
+      Load font with display=swap to prevent render-blocking.
+      This moves Google Fonts out of the critical path.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <!-- Fallback for no-JS -->
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
+
+    <!-- Preconnect for Iconify API (icons loaded on demand) -->
+    <link rel="preconnect" href="https://api.iconify.design" crossorigin />
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

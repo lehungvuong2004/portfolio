@@ -1,12 +1,12 @@
-import { MyIcon } from "../../contants/icon";
+﻿import { MyIcon } from "../../contants/icon";
 import { useTranslation } from "react-i18next";
-import { usePageAnimation } from "../../hooks/usePageAnimation";
-import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
+import { usePageAnimation } from "../../gsap";
+import { useScrollReveal, useStaggerReveal } from "../../gsap";
 import { Icon } from "@iconify/react";
 
 const SkillsPortfolio = () => {
   const { t } = useTranslation();
-  const containerRef = usePageAnimation();
+  const containerRef = usePageAnimation('scale');
 
   const headerReveal = useScrollReveal({ y: -30 });
   const bentoReveal = useStaggerReveal('.bento-item', { y: 50, stagger: 0.15 });
@@ -14,8 +14,8 @@ const SkillsPortfolio = () => {
   return (
     <div ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] text-gray-900 dark:text-white overflow-hidden relative transition-colors duration-500">
       {/* Background Orbs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[37.5rem] h-[37.5rem] bg-cyan-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[31.25rem] h-[31.25rem] bg-purple-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
 
       <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10 mt-16 lg:mt-0">
         {/* Hero */}
@@ -37,7 +37,7 @@ const SkillsPortfolio = () => {
 
           {/* Frontend */}
           <section className="bento-item lg:col-span-2 row-span-2 bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 dark:bg-cyan-500/5 blur-[80px] rounded-full group-hover:bg-blue-500/10 dark:group-hover:bg-cyan-500/10 transition-all"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 dark:bg-cyan-500/5 blur-[5rem] rounded-full group-hover:bg-blue-500/10 dark:group-hover:bg-cyan-500/10 transition-all"></div>
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10">
@@ -71,7 +71,7 @@ const SkillsPortfolio = () => {
           </section>
           {/* Backend */}
           <section className="bento-item bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-emerald-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 blur-[60px] rounded-full group-hover:bg-emerald-500/20 transition-all"></div>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/10 blur-[3.75rem] rounded-full group-hover:bg-emerald-500/20 transition-all"></div>
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-8">
@@ -104,7 +104,7 @@ const SkillsPortfolio = () => {
           </section>
           {/* Tools */}
           <section className="bento-item bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-gray-200 dark:border-white/10 hover:border-orange-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden flex flex-col">
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/10 blur-[60px] rounded-full group-hover:bg-orange-500/20 transition-all"></div>
+            <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/10 blur-[3.75rem] rounded-full group-hover:bg-orange-500/20 transition-all"></div>
 
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex items-center gap-4 mb-8">
@@ -139,17 +139,17 @@ const SkillsPortfolio = () => {
 
           {/* UI UX */}
           <section className="bento-item lg:col-span-3 row-span-1 bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl rounded-[2.5rem] border border-gray-200 dark:border-white/10 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-2xl relative overflow-hidden flex flex-col md:flex-row">
-            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-500/10 blur-[80px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
+            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-500/10 blur-[5rem] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
 
             <div className="p-8 md:p-10 flex-1 relative z-10 flex flex-col justify-center">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform">
 
-                  <Icon icon="mdi:design" className="text-pink-500 dark:text-pink-400"></Icon>
+                  <Icon icon="mdi:material-design" className="text-pink-500 dark:text-pink-400"></Icon>
                 </div>
 
                 <h2 className="text-3xl font-black text-gray-900 dark:text-white">
-                  {t('product.uiux')}
+                  UX/UI
                 </h2>
               </div>
 
@@ -188,7 +188,7 @@ const SkillCard = ({ icon, label, topLabel, color = "blue" }) => (
 
     <div className="relative z-10 flex flex-col items-center">
       {topLabel && (
-        <span className={`text-[10px] font-black text-${color}-500 dark:text-${color}-400 mb-3 tracking-widest uppercase`}>
+        <span className={`text-[0.625rem] font-black text-${color}-500 dark:text-${color}-400 mb-3 tracking-widest uppercase`}>
           {topLabel}
         </span>
       )}

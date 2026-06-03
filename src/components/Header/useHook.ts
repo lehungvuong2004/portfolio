@@ -32,13 +32,28 @@ export const useHeaderHook = () => {
   }, [isDarkMode]);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      tl.fromTo('.header-item', 
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out' }
-      );
-    }, headerRef);
+    const el = headerRef.current;
+    if (!el) return;
+
+    // Set initial state before any paint
+    const items = gsap.utils.toArray<HTMLElement>('.header-item', el);
+    gsap.set(items, { autoAlpha: 0, y: -20 });
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ delay: 0.1, defaults: { ease: 'expo.out' } });
+      
+      // Only use transform + opacity — no layout-triggering props
+      tl.to(items, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        onComplete: () => {
+          // Free GPU memory after animation
+          gsap.set(items, { clearProps: 'willChange' });
+        },
+      });
+    }, el);
 
     const handleClickOutside = (event: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(event.target as Node)) {

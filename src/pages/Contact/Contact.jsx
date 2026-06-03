@@ -1,22 +1,22 @@
-
+﻿
 
 import { useTranslation } from "react-i18next";
-import { usePageAnimation } from "../../hooks/usePageAnimation";
-import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
+import { usePageAnimation } from "../../gsap";
+import { useScrollReveal, useStaggerReveal } from "../../gsap";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
-
+import address from "../../assets/unnamed1.webp";
 const Contact = () => {
   const { t } = useTranslation();
-  const containerRef = usePageAnimation();
+  const containerRef = usePageAnimation('scale');
 
   const headerReveal = useScrollReveal({ y: -30 });
   const formReveal = useScrollReveal({ x: -50, delay: 0.2 });
   const infoReveal = useStaggerReveal('.info-card', { x: 50, stagger: 0.15 });
   return (
     <div ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] text-gray-900 dark:text-white relative overflow-hidden transition-colors duration-500">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -z-10 mix-blend-screen pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[31.25rem] h-[31.25rem] bg-blue-600/10 rounded-full blur-[7.5rem] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[37.5rem] h-[37.5rem] bg-cyan-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
       <main className="pt-32 pb-24 px-6 md:px-16 max-w-7xl mx-auto relative z-10">
         <header ref={headerReveal} className="mb-20 text-center max-w-3xl mx-auto">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-black tracking-widest uppercase mb-6 border border-cyan-500/20 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
@@ -36,7 +36,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div ref={formReveal} className="lg:col-span-7">
             <div className="bg-white/80 dark:bg-[#0e1116]/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group transition-colors duration-500">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[80px] rounded-full group-hover:bg-cyan-500/10 transition-all pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[5rem] rounded-full group-hover:bg-cyan-500/10 transition-all pointer-events-none"></div>
 
               <form className="space-y-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,11 +103,11 @@ const Contact = () => {
             <div className="space-y-6">
               {/* Email */}
               <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-cyan-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[50px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[3.125rem] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
 
                 <div className="flex items-start gap-5 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
-                    <Icon icon="ic:outline-email" class="text-cyan-500 dark:text-cyan-400 text-3xl"></Icon>
+                    <Icon icon="ic:outline-email" className="text-cyan-500 dark:text-cyan-400 text-3xl"></Icon>
                   </div>
 
                   <div>
@@ -122,7 +122,7 @@ const Contact = () => {
 
               {/* Phone */}
               <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-purple-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[50px] rounded-full group-hover:bg-purple-500/20 transition-all"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-[3.125rem] rounded-full group-hover:bg-purple-500/20 transition-all"></div>
 
                 <div className="flex items-start gap-5 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 group-hover:scale-110 transition-transform flex-shrink-0">
@@ -144,7 +144,7 @@ const Contact = () => {
 
               {/* Address */}
               <div className="info-card bg-white dark:bg-[#0e1116] rounded-4xl p-6 md:p-8 border border-gray-200 dark:border-white/5 hover:border-pink-500/30 transition-all group shadow-xl dark:shadow-lg relative overflow-hidden hover:-translate-y-1">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-[50px] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 blur-[3.125rem] rounded-full group-hover:bg-pink-500/20 transition-all"></div>
 
                 <div className="flex items-start gap-5 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 group-hover:scale-110 transition-transform shrink-0">
@@ -167,7 +167,8 @@ const Contact = () => {
             {/* Map */}
             <div className="info-card overflow-hidden rounded-[2.5rem] shadow-xl dark:shadow-2xl border border-gray-200 dark:border-white/10 group">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbpO439_5FjXx5GZHTshSXjUJLnADX2at2PUbwfq2ij8_91GDAxrsgFR77JiwyNiwKAChxf8EHfQjT18vW-6fWL72fwyBnfjqQN4pwyfRm3a5c4Edb1poNubFgwL_wfGP8z-yDyiAmAA9RwMZLuTih_bm9zvzAfisUHCzsNCM0hRgKwO8jjpxbg8VDpfAMUa1kwgm8C5h22FFBpCHWEQQK6zU8n1SCAroVHaYeHTLlfzSoEsk6qvhzLbAD8IsfcLRtTo0JRobuCUM"
+                loading="lazy"
+                src={address}
                 alt="Map"
                 className="w-full h-80 object-cover mix-blend-luminosity opacity-70 group-hover:mix-blend-normal group-hover:opacity-100 transition duration-700 group-hover:scale-105"
               />
@@ -181,17 +182,18 @@ const Contact = () => {
 
               <div className="flex gap-4">
                 {[
-                  { icon: "ic:baseline-facebook", color: "blue" },
-                  { icon: "mdi:git", color: "cyan" },
-                  { icon: "material-symbols:link", color: "purple" },
+                  { icon: "ic:baseline-facebook", color: "blue", label: "Facebook" },
+                  { icon: "mdi:git", color: "cyan", label: "GitHub" },
+                  { icon: "material-symbols:link", color: "purple", label: "Portfolio" },
                 ].map((item, index) => (
                   <Link
                     key={index}
                     target="_blank"
                     to="https://www.facebook.com/lehungvuong2004/"
+                    aria-label={item.label}
                     className={`w-14 h-14 rounded-2xl bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 hover:bg-${item.color}-50 dark:hover:bg-${item.color}-500/20 hover:border-${item.color}-300 dark:hover:border-${item.color}-500/40 hover:text-${item.color}-600 dark:hover:text-${item.color}-400 transition-all duration-300 hover:-translate-y-2 shadow-sm`}
                   >
-                    <Icon icon={item.icon} className="text-[24px]" target="_blank" />
+                    <Icon icon={item.icon} className="text-2xl" target="_blank" />
                   </Link>
                 ))}
               </div>

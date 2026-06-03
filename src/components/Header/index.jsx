@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { MyIcon } from '../../contants/icon';
 import { useHeaderHook } from './useHook';
 
@@ -42,7 +42,7 @@ const Header = () => {
             >
               {t(link.label)}
               {location.pathname === link.path && (
-                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-600 dark:bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.8)] dark:shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-600 dark:bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.8)] dark:shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
               )}
             </Link>
           ))}

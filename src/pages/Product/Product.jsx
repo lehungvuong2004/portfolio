@@ -1,11 +1,11 @@
-import  { useState } from "react";
+﻿import  { useState } from "react";
 import { Link } from "react-router-dom";
 import { MyIcon } from "../../contants/icon";
 import { useTranslation } from "react-i18next";
-import { usePageAnimation } from "../../hooks/usePageAnimation";
-import { useScrollReveal, useStaggerReveal } from '../../hooks/useScrollReveal';
-import dashboard from "../../assets/Dashboard/phuongBinhHungHoa.png";
-import cauOngLanh from "../../assets/Dashboard/phuongCauOngLanh.png"
+import { usePageAnimation } from "../../gsap";
+import { useScrollReveal, useStaggerReveal } from "../../gsap";
+import dashboard from "../../assets/Dashboard/phuongBinhHungHoa.webp";
+import cauOngLanh from "../../assets/Dashboard/phuongCauOngLanh.webp"
 const projects = [
   {
     id: 1,
@@ -49,7 +49,7 @@ const projects = [
 const ProjectsPage = () => {
   const [active, setActive] = useState("all");
   const { t } = useTranslation();
-  const containerRef = usePageAnimation();
+  const containerRef = usePageAnimation('scale');
   
   const headerReveal = useScrollReveal({ y: -30 });
   const filterReveal = useScrollReveal({ y: 20, delay: 0.2 });
@@ -70,8 +70,8 @@ const ProjectsPage = () => {
   return (
     <div ref={containerRef} className="min-h-screen bg-slate-50 dark:bg-[#090b0e] text-gray-900 dark:text-white relative overflow-hidden transition-colors duration-500">
       {/* Background Decor */}
-      <div className="absolute top-1/4 -right-64 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
-      <div className="absolute -bottom-64 -left-64 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute top-1/4 -right-64 w-[50rem] h-[50rem] bg-blue-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
+      <div className="absolute -bottom-64 -left-64 w-[37.5rem] h-[37.5rem] bg-cyan-600/10 rounded-full blur-[9.375rem] -z-10 mix-blend-screen pointer-events-none"></div>
 
       <main className="max-w-7xl mx-auto px-6 md:px-16 py-24 lg:py-32 relative z-10 mt-16 lg:mt-0">
         
@@ -126,7 +126,7 @@ const ProjectsPage = () => {
                   <div className="p-10 flex flex-col absolute bottom-0 w-full z-20">
                     <div className="flex flex-wrap gap-2 mb-5">
                       {featured.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-cyan-300 text-[10px] font-black tracking-widest uppercase shadow-sm backdrop-blur-md">
+                        <span key={tag} className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-cyan-300 text-[0.625rem] font-black tracking-widest uppercase shadow-sm backdrop-blur-md">
                           {tag}
                         </span>
                       ))}
@@ -194,7 +194,7 @@ const ProjectsPage = () => {
 /* COMPONENTS */
 
 const TagBadge = ({ label }) => (
-  <span className="px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-blue-600 dark:text-cyan-300 text-[10px] font-black tracking-widest uppercase shadow-sm">
+  <span className="px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-white/5 border border-blue-200 dark:border-white/10 text-blue-600 dark:text-cyan-300 text-[0.625rem] font-black tracking-widest uppercase shadow-sm">
     {label}
   </span>
 );
