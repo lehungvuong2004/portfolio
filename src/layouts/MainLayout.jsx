@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header'
 import { Outlet } from "react-router-dom"
 import Footer from '../components/Footer'
@@ -7,7 +7,8 @@ import { useLayoutTimeline } from '../gsap';
 
 const MainLayout = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const layoutRef = useLayoutTimeline();
+  // Still call hook — it handles ScrollTrigger.refresh() on route change
+  useLayoutTimeline();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,7 +21,7 @@ const MainLayout = () => {
   const formattedDate = currentTime.toLocaleDateString([], { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
 
   return (
-    <div ref={layoutRef} className="relative">
+    <div className="relative">
       <Header />
       {/* Clock widget */}
       <div className="hidden lg:block fixed top-[5.625rem] right-6 md:right-16 z-40 pointer-events-none">

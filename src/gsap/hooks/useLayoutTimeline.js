@@ -3,63 +3,22 @@ import { gsap, ScrollTrigger } from '../setup';
 import { useLocation } from 'react-router-dom';
 
 /**
- * useLayoutTimeline — Cross-component layout entry animation.
+ * useLayoutTimeline
  * 
- * Key optimizations:
- * - useLayoutEffect for instant initial state (no flash of unstyled content)
- * - Uses gsap.matchMedia() for responsive animation
- * - Properly cleans up old ScrollTriggers on route change
- * - Batches DOM reads/writes to prevent forced reflow
+ * Chỉ xử lý ScrollTrigger.refresh() khi route thay đổi.
+ * KHÔNG còn ẩn/hiện layout — việc đó gây ra flash.
+ * Animation page được xử lý bởi usePageAnimation trên từng page.
  */
 export const useLayoutTimeline = () => {
   const layoutRef = useRef(null);
   const location = useLocation();
 
-  // Set initial hidden state before paint
-  useLayoutEffect(() => {
-    const el = layoutRef.current;
-    if (!el) return;
-    gsap.set(el, { autoAlpha: 0 });
-  }, []);
-
   useEffect(() => {
-    const el = layoutRef.current;
-    if (!el) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add('(prefers-reduced-motion: no-preference)', () => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-
-        // Fade in the layout container
-        tl.to(el, { 
-          autoAlpha: 1, 
-          duration: 0.5,
-        });
-
-        // Refresh scroll triggers AFTER layout is visible (deferred)
-        tl.call(() => {
-          // Use requestAnimationFrame to avoid forced reflow during animation
-          requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-          });
-        }, null, '+=0.1');
-
-      }, el);
-
-      return () => ctx.revert();
+    // Refresh scroll triggers after route change so positions are recalculated
+    const raf = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
     });
-
-    // For reduced-motion users: just show content immediately
-    mm.add('(prefers-reduced-motion: reduce)', () => {
-      gsap.set(el, { autoAlpha: 1 });
-      return () => {};
-    });
-
-    return () => {
-      mm.revert();
-    };
+    return () => cancelAnimationFrame(raf);
   }, [location.pathname]);
 
   return layoutRef;
@@ -85,7 +44,7 @@ export const useHeroTimeline = (refs = {}) => {
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({ 
-          delay: 0.2,
+          delay: 0.15,
           defaults: { ease: 'expo.out' },
         });
 

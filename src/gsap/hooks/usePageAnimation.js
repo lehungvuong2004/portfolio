@@ -3,60 +3,67 @@ import { gsap } from '../setup';
 
 /**
  * usePageAnimation — Page entry animation.
- * Sets initial state in useLayoutEffect (before paint) to prevent CLS.
- * Uses clip-path + transform for premium reveal effect.
+ *
+ * Nguyên nhân flash cũ:
+ * - useLayoutTimeline ẩn toàn bộ layout (header + page)
+ * - usePageAnimation ẩn thêm page content → double hide → flash
+ *
+ * Fix:
+ * - useLayoutTimeline không ẩn layout nữa
+ * - usePageAnimation chỉ fade nhẹ (opacity 0→1, không có y offset)
+ *   để tránh position jump trông như "nhấp sáng"
  */
 export const usePageAnimation = (variant = 'default') => {
   const containerRef = useRef(null);
 
+  // Set initial invisible state synchronously before browser paints
   useLayoutEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    gsap.set(el, { autoAlpha: 0, y: 20, willChange: 'transform, opacity' });
+    // Only opacity — no y/scale to avoid layout jumps that cause the flash
+    gsap.set(el, { autoAlpha: 0 });
   }, []);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    const ctx = gsap.context(() => {
-      if (variant === 'slide') {
-        // Slide from right — for page transitions
-        gsap.fromTo(el,
-          { autoAlpha: 0, xPercent: 5 },
-          { 
-            autoAlpha: 1, 
-            xPercent: 0, 
-            duration: 0.7, 
-            ease: 'expo.out',
-            onComplete: () => gsap.set(el, { willChange: 'auto', clearProps: 'willChange' }),
-          }
-        );
-      } else if (variant === 'scale') {
-        // Scale from 97% — subtle zoom
-        gsap.fromTo(el,
-          { autoAlpha: 0, scale: 0.97 },
-          { 
-            autoAlpha: 1, 
-            scale: 1, 
-            duration: 0.8, 
-            ease: 'power3.out',
-            onComplete: () => gsap.set(el, { willChange: 'auto', clearProps: 'willChange' }),
-          }
-        );
-      } else {
-        // Default: fade + lift
-        gsap.to(el, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'expo.out',
-          onComplete: () => gsap.set(el, { willChange: 'auto', clearProps: 'willChange' }),
-        });
-      }
-    }, el);
+    const mm = gsap.matchMedia();
 
-    return () => ctx.revert();
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      const ctx = gsap.context(() => {
+        if (variant === 'scale') {
+          // Very subtle scale so it doesn't look like a flash
+          gsap.fromTo(el,
+            { autoAlpha: 0, scale: 0.985 },
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.6,
+              ease: 'power2.out',
+              onComplete: () => gsap.set(el, { clearProps: 'scale,willChange' }),
+            }
+          );
+        } else {
+          // Pure fade — no movement, zero chance of looking like a flash
+          gsap.to(el, {
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: 'power1.out',
+          });
+        }
+      }, el);
+
+      return () => ctx.revert();
+    });
+
+    // Reduced-motion: instant show
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      gsap.set(el, { autoAlpha: 1, clearProps: 'all' });
+      return () => {};
+    });
+
+    return () => mm.revert();
   }, [variant]);
 
   return containerRef;
