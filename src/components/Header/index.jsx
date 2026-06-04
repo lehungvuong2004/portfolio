@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MyIcon } from '../../contants/icon';
 import { useHeaderHook } from './useHook';
 
@@ -16,15 +16,16 @@ const Header = () => {
     changeLanguage,
     navLinks,
     isMobileMenuOpen,
-    setIsMobileMenuOpen
+    setIsMobileMenuOpen,
+    isScrolled
   } = useHeaderHook();
 
   return (
     <div ref={headerRef} className="fixed w-full top-0 z-50">
       <div className="absolute inset-0 bg-white/80 dark:bg-[#090b0e]/70 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 shadow-xl dark:shadow-2xl transition-colors duration-500"></div>
-      <nav className="relative flex items-center justify-between px-6 md:px-16 py-5 max-w-7xl mx-auto">
+      <nav className={`relative flex items-center justify-between px-6 md:px-16 transition-all duration-300 max-w-7xl mx-auto ${isScrolled ? 'py-2' : 'py-5'}`}>
         {/* Logo */}
-        <div className="header-item text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
+        <div className={`header-item font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
           HÙNG VƯƠNG.
         </div>
         
@@ -49,17 +50,17 @@ const Header = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3 sm:gap-5">
+        <div className="header-item flex items-center gap-3 sm:gap-5">
           {/* Dark Mode Toggle */}
           <button 
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="header-item cursor-pointer w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all shadow-inner active:scale-95"
+            className="cursor-pointer w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-500/30 dark:hover:border-cyan-500/30 transition-all shadow-inner active:scale-95"
             aria-label="Toggle Dark Mode"
           >
             <MyIcon name={isDarkMode ? "entypo:light-up" : "ix:light-dark"} size={20} />
           </button>
 
-          <div ref={langRef} className="header-item relative">
+          <div ref={langRef} className="relative">
             <button 
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="relative cursor-pointer flex items-center gap-2 bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 transition-all hover:border-blue-500/30 dark:hover:border-cyan-500/30 shadow-inner"
@@ -100,7 +101,7 @@ const Header = () => {
           </div>
           <Link 
             to="/contacts" 
-            className='header-item hidden lg:flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all active:scale-95'
+            className='hidden lg:flex items-center justify-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all active:scale-95'
           >
             {t('header.contactNow')}
           </Link>
@@ -108,7 +109,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden header-item w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-all active:scale-95"
+            className="lg:hidden w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#11161d] border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-all active:scale-95"
             aria-label="Toggle Mobile Menu"
           >
             <MyIcon name={isMobileMenuOpen ? "material-symbols:close-rounded" : "material-symbols:menu"} size={20} />

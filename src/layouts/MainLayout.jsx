@@ -1,24 +1,14 @@
-import { useState, useEffect } from 'react';
 import Header from '../components/Header'
 import { Outlet } from "react-router-dom"
 import Footer from '../components/Footer'
 import { MyIcon } from '../contants/icon'
 import { useLayoutTimeline } from '../gsap';
+import { useMainLayout } from './useMainLayout.ts';
 
 const MainLayout = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const { formattedTime, formattedDate } = useMainLayout();
   // Still call hook — it handles ScrollTrigger.refresh() on route change
   useLayoutTimeline();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const formattedDate = currentTime.toLocaleDateString([], { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
 
   return (
     <div className="relative">

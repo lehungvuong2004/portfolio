@@ -10,7 +10,8 @@ const projects = [
   {
     id: 1,
     category: "web-app",
-    tags: ["Reactjs", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Yup", "Formik", "Git" ,"Docker"],
+    status: "completed",
+    tags: ["Reactjs","Echartjs", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Yup", "Formik", "Git" ,"Docker"],
     title: "Dashboard quản lý doanh nghiệp",
     desc: "Dashboard quản lý doanh nghiệp toàn diện với khả năng xử lý dữ liệu lớn .",
     image: dashboard,
@@ -22,6 +23,7 @@ const projects = [
   {
     id: 2,
     category: "web-app",
+    status: "completed",
     tags: ["Dashboard"],
     title: "Phường cầu ông lãnh",
     desc: "Dashboard phường cầu ông lãnh.",
@@ -34,6 +36,7 @@ const projects = [
   {
     id: 3,
     category: "web-app",
+    status: "in-progress",
     tags: ["Php Laravel", "Reactjs","Microservice", "Taiwindcss", "Yup" , "Formik","Docker","Mysql", "Git"],
     title: "Job and Booking Board",
     desc: "Nền tảng tìm kiếm và đặt lịch các dịch vụ 2 chiều",
@@ -56,8 +59,7 @@ const ProjectsPage = () => {
   const gridReveal = useStaggerReveal('.project-card', { y: 50, stagger: 0.1 });
 
   const filters = [
-    { label: t('product.all'), value: "all" },
-    { label: t('product.webApp'), value: "web-app" }
+    { label: t('product.all'), value: "all" }
   ];
 
   const filtered =
@@ -93,13 +95,20 @@ const ProjectsPage = () => {
             <button
               key={f.value}
               onClick={() => setActive(f.value)}
-              className={`px-6 py-2.5 rounded-full border text-sm font-bold tracking-wide uppercase transition-all ${
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-full border text-sm font-bold tracking-wide uppercase transition-all ${
                 active === f.value
                   ? "bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-cyan-500 dark:to-blue-500 text-white border-transparent shadow-[0_0_20px_rgba(37,99,235,0.3)] dark:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
                   : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-white/10 hover:border-blue-500/50 dark:hover:border-cyan-500/50 hover:text-blue-600 dark:hover:text-white"
               }`}
             >
-              {f.label}
+              <span>{f.label}</span>
+              <span className={`px-2 py-0.5 rounded-md text-[0.65rem] ${
+                active === f.value 
+                  ? 'bg-white/20 text-white' 
+                  : 'bg-gray-200 dark:bg-white/10 text-gray-500 dark:text-gray-400'
+              }`}>
+                {f.value === 'all' ? projects.length : projects.filter(p => p.category === f.value).length}
+              </span>
             </button>
           ))}
         </div>
@@ -115,6 +124,15 @@ const ProjectsPage = () => {
               {featured && (
                 <div className="project-card lg:col-span-3 bg-gray-900 rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-cyan-500/50 transition-all duration-500 group relative shadow-xl dark:shadow-none">
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent z-10 pointer-events-none"></div>                 
+                  
+                  {/* Status Badge */}
+                  {featured.status && <StatusBadge status={featured.status} t={t} large />}
+                  
+                  {/* Counter Badge */}
+                  <div className="absolute top-6 right-6 z-30 bg-black/50 dark:bg-black/60 backdrop-blur-md text-white/90 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg border border-white/10 tracking-widest pointer-events-none">
+                    1 / {filtered.length}
+                  </div>
+
                   <div className="h-[28rem] overflow-hidden relative">
                     <img
                       src={featured.image}
@@ -167,7 +185,7 @@ const ProjectsPage = () => {
               {/* Right Card */}
               {rest[0] && (
                 <div className="lg:col-span-2">
-                  <MediumCard project={rest[0]} tall t={t} />
+                  <MediumCard project={rest[0]} tall t={t} displayIndex={2} total={filtered.length} />
                 </div>
               )}
             </div>
@@ -175,8 +193,8 @@ const ProjectsPage = () => {
             {/* Bottom */}
             {rest.length > 1 && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {rest.slice(1).map((p) => (
-                  <MediumCard key={p.id} project={p} t={t} />
+                {rest.slice(1).map((p, i) => (
+                  <MediumCard key={p.id} project={p} t={t} displayIndex={i + 3} total={filtered.length} />
                 ))}
               </div>
             )}
@@ -199,12 +217,22 @@ const TagBadge = ({ label }) => (
   </span>
 );
 
-const MediumCard = ({ project, tall = false, t }) => (
+const MediumCard = ({ project, tall = false, t, displayIndex, total }) => (
   <div
-    className={`project-card bg-white dark:bg-[#0e1116] rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-blue-500/50 hover:-translate-y-2 shadow-xl dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 group flex flex-col ${
+    className={`project-card bg-white dark:bg-[#0e1116] rounded-[2.5rem] overflow-hidden border border-gray-200 dark:border-white/10 hover:border-blue-500/50 hover:-translate-y-2 shadow-xl dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 group flex flex-col relative ${
       tall ? "h-full" : ""
     }`}
   >
+    {/* Counter Badge */}
+    {(displayIndex && total) && (
+      <div className="absolute top-4 right-4 z-30 bg-black/50 dark:bg-black/60 backdrop-blur-md text-white/90 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg border border-white/10 tracking-widest pointer-events-none">
+        {displayIndex} / {total}
+      </div>
+    )}
+
+    {/* Status Badge */}
+    {project.status && <StatusBadge status={project.status} t={t} />}
+
     <div className={`${tall ? "h-64 lg:h-1/2" : "h-56"} overflow-hidden relative`}>
       <div className="absolute inset-0 bg-slate-50/20 dark:bg-[#090b0e]/20 z-10 group-hover:bg-transparent transition-all"></div>
       <img
@@ -252,5 +280,25 @@ const MediumCard = ({ project, tall = false, t }) => (
     </div>
   </div>
 );
+
+const StatusBadge = ({ status, t, large = false }) => {
+  const isCompleted = status === 'completed';
+  const isInProgress = status === 'in-progress';
+  
+  return (
+    <div className={`absolute ${large ? 'top-6 left-6' : 'top-4 left-4'} z-30 text-[0.65rem] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg border pointer-events-none bg-white dark:bg-[#11161d] ${
+      isCompleted ? 'text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-500/30' :
+      isInProgress ? 'text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/30' :
+      'text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/30'
+    }`}>
+      <span className="flex items-center gap-1.5">
+        <span className={`w-1.5 h-1.5 rounded-full ${isCompleted ? 'bg-emerald-500 dark:bg-emerald-400' : isInProgress ? 'bg-amber-500 dark:bg-amber-400' : 'bg-rose-500 dark:bg-rose-400'}`}></span>
+        {isCompleted ? t('product.statusCompleted') :
+         isInProgress ? t('product.statusInProgress') :
+         t('product.statusPending')}
+      </span>
+    </div>
+  );
+};
 
 export default ProjectsPage;

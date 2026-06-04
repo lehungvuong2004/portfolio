@@ -77,7 +77,10 @@ const resources = {
         viewDemo: "Xem Demo",
         github: "Github",
         details: "Chi tiết",
-        noProjects: "Không có dự án nào."
+        noProjects: "Không có dự án nào.",
+        statusCompleted: "Đã hoàn thành",
+        statusInProgress: "Đang thực hiện",
+        statusPending: "Chưa hoàn thành"
       },
       certificate: {
         title: "Chứng chỉ chuyên môn",
@@ -185,7 +188,10 @@ const resources = {
         viewDemo: "Live Demo",
         github: "Github",
         details: "Details",
-        noProjects: "No projects found."
+        noProjects: "No projects found.",
+        statusCompleted: "Completed",
+        statusInProgress: "In Progress",
+        statusPending: "Pending"
       },
       certificate: {
         title: "Professional Certificates",

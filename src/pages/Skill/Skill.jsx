@@ -55,17 +55,18 @@ const SkillsPortfolio = () => {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <SkillCard icon="mdi:react" label="React" topLabel="JS" color="cyan" />
+                <SkillCard icon="mdi:chart-line" label="Echartjs" topLabel="Chart" color="blue" />
                 <SkillCard icon="tabler:brand-redux" label="Redux Toolkit" topLabel="State" color="purple" />
                 <SkillCard icon="mdi:language-typescript" label="TypeScript" topLabel="< >" color="blue" />
+                <SkillCard icon="mdi:language-javascript" label="Javascript" topLabel="JS" color="orange" />
                 <SkillCard icon="mdi:tailwind" label="TailwindCSS" topLabel="CSS" color="cyan" />
-                <SkillCard icon="mdi:bootstrap" label="Bootstrap" topLabel="CSS" color="pink" />
                 <SkillCard icon="material-symbols:fact-check-outline-rounded" label="Yup" topLabel="Valid" color="emerald" />
                 <SkillCard icon="material-symbols:dynamic-form-outline-rounded" label="Formik" topLabel="Form" color="pink" />
+                <SkillCard icon="mdi:bootstrap" label="Bootstrap" topLabel="CSS" color="pink" />
                 {/* <SkillCard icon="mdi:state-machine" label="Zustand" topLabel="State" color="orange" /> */}
-                <SkillCard icon="mdi:language-javascript" label="Javascript" topLabel="JS" color="orange" />
+                <SkillCard icon="mdi:language-html5" label="HTML/CSS" topLabel="Web" color="blue" />
                 <SkillCard icon="mdi:lighthouse" label="Lighthouse" topLabel="Perf" color="emerald" />
                 <SkillCard icon="simple-icons:bem" label="BEM" topLabel="BEM" color="orange" />
-                <SkillCard icon="mdi:language-html5" label="HTML/CSS" topLabel="Web" color="blue" />
               </div>
             </div>
           </section>

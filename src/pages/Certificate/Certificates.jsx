@@ -1,4 +1,4 @@
-﻿import { MyIcon } from '../../contants/icon';
+import { MyIcon } from '../../contants/icon';
 import { useTranslation } from 'react-i18next';
 import { usePageAnimation } from "../../gsap";
 import { useScrollReveal, useStaggerReveal } from "../../gsap";
@@ -17,13 +17,13 @@ const Certificates = () => {
   const scroll = (direction) => {
     if (listReveal.current) {
       const { current } = listReveal;
-      const scrollAmount = 400; 
+      const scrollAmount = 400;
       current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     }
   };
 
   const certificateList = [
-     {
+    {
       id: 1,
       title: t('certificate.cert1Title'),
       org: 'Tổng công ty Dịch vụ Viễn thông (VNPT)',
@@ -33,29 +33,30 @@ const Certificates = () => {
     },
     {
       id: 2,
-      title: t('certificate.cert2Title'),
-      org: 'HTML & CSS BASIC',
-      year: '2025',
-      category: 'Website',
-      image: htmlcssImg,
-    },
-        {
-      id: 4,
       title: t('certificate.cert3Title'),
-      org: 'UI/UX DESIGN BASIC',
+      org: 'UI/UX DESIGN',
       year: '2025',
       category: 'Website',
       image: uxuiImg,
     },
     {
       id: 3,
+      title: t('certificate.cert2Title'),
+      org: 'HTML & CSS BASIC',
+      year: '2025',
+      category: 'Website',
+      image: htmlcssImg,
+    },
+
+    {
+      id: 4,
       title: t('certificate.cert4Title'),
       org: 'JavaScript BASIC',
       year: '2026',
       category: 'Website',
       image: javascriptImg,
     },
-   
+
 
   ];
 
@@ -79,13 +80,13 @@ const Certificates = () => {
           </div>
 
           <div className="flex gap-4 items-center justify-center">
-            <button 
+            <button
               onClick={() => scroll('left')}
               className="w-14 h-14 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center hover:bg-purple-100 dark:hover:bg-purple-500/20 hover:border-purple-300 dark:hover:border-purple-500/50 hover:text-purple-600 dark:hover:text-purple-400 transition-all text-gray-600 dark:text-gray-400 active:scale-95 shadow-lg"
             >
               <MyIcon name="material-symbols:arrow-back-rounded" size={28} />
             </button>
-            <button 
+            <button
               onClick={() => scroll('right')}
               className="w-14 h-14 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center hover:bg-purple-100 dark:hover:bg-purple-500/20 hover:border-purple-300 dark:hover:border-purple-500/50 hover:text-purple-600 dark:hover:text-purple-400 transition-all text-gray-600 dark:text-gray-400 active:scale-95 shadow-lg"
             >
@@ -95,20 +96,28 @@ const Certificates = () => {
         </header>
 
         {/* Slider */}
-        <div 
+        <div
           ref={listReveal}
           className="flex gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {certificateList.map((cert) => (
+          {certificateList.map((cert, index) => (
             <div
               key={cert.id}
               className="cert-item flex flex-col group overflow-hidden rounded-[2.5rem] border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0e1116] transition-all duration-500 hover:border-purple-400 dark:hover:border-purple-500/50 hover:-translate-y-2 shadow-xl dark:shadow-none hover:shadow-[0_20px_40px_rgba(168,85,247,0.15)] dark:hover:shadow-[0_20px_40px_rgba(168,85,247,0.2)] flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)] snap-start relative"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-[#0e1116] z-10 pointer-events-none"></div>
 
+              {/* Counter Badge */}
+              <div className="absolute top-4 right-4 z-30 bg-black/50 dark:bg-black/60 backdrop-blur-md text-white/90 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg border border-white/10 tracking-widest">
+                {index + 1} / {certificateList.length}
+              </div>
+
               {/* Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div
+                className="relative h-64 overflow-hidden cursor-pointer"
+                onClick={() => window.open(cert.image, '_blank')}
+              >
                 <img
                   src={cert.image}
                   alt={cert.title}
@@ -128,7 +137,10 @@ const Certificates = () => {
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 leading-snug">
+                <h3
+                  className="text-2xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300 hover:text-purple-600 dark:hover:text-purple-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 leading-snug cursor-pointer"
+                  onClick={() => window.open(cert.image, '_blank')}
+                >
                   {cert.title}
                 </h3>
 
@@ -138,7 +150,7 @@ const Certificates = () => {
                 </p>
 
                 <div className="mt-auto">
-                  <button 
+                  <button
                     onClick={() => window.open(cert.image, '_blank')}
                     className="cursor-pointer flex items-center justify-center gap-2 w-full py-2.5 bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-600 dark:hover:bg-purple-600 text-purple-700 dark:text-purple-300 hover:text-white dark:hover:text-white text-sm font-bold rounded-xl transition-all duration-300 border border-purple-100 dark:border-purple-500/20"
                   >
